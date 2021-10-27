@@ -791,7 +791,7 @@ function Main() {
             state.innerHTML = "Failed: Width is 0"
             inProgress = false
 
-            return setTimeout(() => { if (!inProgress) { StopMain() } }, 2000)
+            return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
         }
         //
 
@@ -802,7 +802,7 @@ function Main() {
             state.innerHTML = "Failed: Wrong Format"
             inProgress = false
 
-            return setTimeout(() => { if (!inProgress) { StopMain() } }, 2000)
+            return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
         }
         // -------------------------------- //
 
@@ -832,7 +832,7 @@ function Main() {
                 state.innerHTML = `Failed: Box n°${g_Rectangles[rid].id} is too big.`
                 inProgress = false
 
-                return setTimeout(() => { if (!inProgress) { StopMain() } }, 2000)
+                return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
             }
 
             if (g_Rectangles[rid].x2 - g_Rectangles[rid].x1 > sessionInfo.Width && g_Rectangles[rid].y2 - g_Rectangles[rid].y1 > sessionInfo.Width || (!sessionInfo.CanRotate && g_Rectangles[rid].x2 - g_Rectangles[rid].x1 > sessionInfo.Width)) {
@@ -840,7 +840,7 @@ function Main() {
                 state.innerHTML = `Failed: Box n°${g_Rectangles[rid].id} is too big.`
                 inProgress = false
 
-                return setTimeout(() => { if (!inProgress) { StopMain() } }, 2000)
+                return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
             }
         }
         // -------------------------- //
@@ -882,7 +882,7 @@ function Main() {
                             state.innerHTML = "Failed: Couldn't place rectangle n°" + g_Rectangles[rid].id
                             inProgress = false
 
-                            return setTimeout(() => { if (!inProgress) { StopMain() } }, 2000)
+                            return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
                         }
 
                     } else { // if it doesn't overlap, we add the hole to the newHoles overwrite array
@@ -896,7 +896,7 @@ function Main() {
                     state.innerHTML = "Failed: Couldn't place rectangle n°" + g_Rectangles[rid].id
                     inProgress = false
 
-                    return setTimeout(() => { if (!inProgress) { StopMain() } }, 2000)
+                    return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
                 }
 
                 g_Holes = sortByHeight(g_Holes)
@@ -906,7 +906,7 @@ function Main() {
                 state.innerHTML = "Failed: Couldn't find hole for rectangle n°" + g_Rectangles[rid].id
                 inProgress = false
 
-                return setTimeout(() => { if (!inProgress) { StopMain() } }, 2000)
+                return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
             }
         }
         // End Main For Loop //
