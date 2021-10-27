@@ -1,0 +1,198 @@
+/* ------------------------------------------------------------------------------------
+
+Author  : Romain Besson
+
+Date    : 10/24/2021
+
+Publish : 10/27/2021
+
+------------------------------------------------------------------------------------ */
+
+* {
+    color: #eeeeee;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+body {
+    background-color: #404040;
+    width: 99%;
+    margin-right: 10px;
+}
+
+p {
+    margin: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+.options, .coords-box, .control-box {
+    background-color: #404040;
+    width: 250px;
+    height: auto;
+    border: rgb(100, 100, 100);
+    border-width: 1px;
+    border-style: solid;
+
+    margin-top: 15px;
+    margin-left: 5px;
+
+    padding: 10px;
+}
+
+/* Switch */
+.switch {
+    position: relative;
+    width: 30px;
+    height: 17px;
+    top: 2px;
+
+    float: right;
+}
+
+/* Overwrite default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Circle/Slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(155, 155, 155);
+    -webkit-transition: .15s;
+    transition: .15s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .15s;
+    transition: .15s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 16px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* Text Boxes */
+.input-box {
+    color: black;
+    width: 65px;
+    float: right;
+}
+
+#box-coordinates {
+    color: black;
+    width: 98%;
+    height: 250px;
+}
+
+/* Buttons */
+.controls-button {
+    color: black;
+    width: 99%;
+    margin: 0 auto;
+    display: block;
+}
+
+
+/* Output */
+
+canvas {
+    background-color: #606060;
+
+    width: 332px;
+    height: 532px;
+
+    position: absolute;
+    margin-top: 18px;
+
+    border: rgb(24, 24, 24);
+    border-width: 1px;
+    border-style: solid;
+}
+
+#output-box {
+    position: absolute;
+    background-color: #404040;
+    width: 290px;
+    height: auto;
+    border: rgb(100, 100, 100);
+    border-width: 1px;
+    border-style: solid;
+
+    margin-left: 642px;
+
+    padding: 10px;
+}
+
+#output-boxes {
+    position: absolute;
+    background-color: #404040;
+    width: max-content;
+    height: auto;
+    border: rgb(100, 100, 100);
+    border-width: 1px;
+    border-style: solid;
+
+    margin-top: 162px;
+    margin-left: 642px;
+
+    padding: 10px;
+}
+
+
+.output-info {
+    float: right;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.grid-size {
+    transform-origin: center right;
+
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    z-index: 1;
+}
+
+#canvas {
+    position: absolute;
+    margin-left: 289px;
+    margin-top: -18px;
+}
