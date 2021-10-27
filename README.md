@@ -1,4 +1,4 @@
-# Rectangle Placer
+# Strip Packing
 
 This repository contains implementations for the strip packing problem that can be found here: https://en.wikipedia.org/wiki/Strip_packing_problem <br>
 
