@@ -1,0 +1,79 @@
+<!-- ------------------------------------------------------------------------------------
+
+Author  : Romain Besson
+
+Date    : 10/24/2021
+
+Publish : 10/27/2021
+
+------------------------------------------------------------------------------------ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="canvas">
+        <span class="grid-size" style="margin-top: 3px; margin-left: -2px;">0</span>
+        <span class="grid-size" style="margin-top: 3px; margin-left: 328px;" id="width-value">0</span>
+        <span class="grid-size" style="margin-top: 550px; margin-left: -2px;" id="height-value">0</span>
+        <canvas id="output-canvas"></canvas>
+    </div>
+
+    <div id="output-box">
+        <span style="color: rgb(255, 255, 255);">Output:</span>
+        <p></p>
+        
+        <span style="font-size: 14px;">Theoretical Min Height:</span><span class="output-info" name="theoreticalMinHeight" style="color: rgb(255, 255, 255);">NaN</span>
+        <br>
+        <span style="font-size: 14px;">Height Calculated:</span><span class="output-info" name="endHeight" style="color: rgb(255, 255, 255);">NaN</span>
+        <br>
+        <span style="font-size: 14px;">Used % (boxes):</span><span class="output-info" name="percUsed" style="color: rgb(255, 255, 255);">NaN</span>
+        <br>
+        <span style="font-size: 14px;">Lost % (gray):</span><span class="output-info" name="percLost" style="color: rgb(255, 255, 255);">NaN</span>
+        <br>
+        <span style="font-size: 14px;">Run Time:</span><span class="output-info" name="runTime" style="color: rgb(255, 255, 255);">NaN</span>
+    </div>
+
+    <div id="output-boxes">
+        <span style="color: rgb(255, 255, 255);">Rectangles:</span>
+        <span id="outputRectangles" style="width: fit-content;"></span>
+    </div>
+
+    <div class="options">
+        Can Rotate
+        <label class="switch" option="canRotate">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+
+        <p></p>
+
+        Canvas Width
+        <input type="number" min="1" max="10000" placeholder="width"  class="input-box" option="width">
+    </div>
+    
+    <div class="coords-box">
+        Boxes:
+        <p></p>
+        <input type="number" min="1" max="300" placeholder="number" style="float: none; width: 62px;" class="input-box" option="randomNumber"> 
+        <button class="controls-button" style="width: 175px; float: right;" onclick="randomizeCoords()">Generate Boxes</button> 
+        <p></p>
+        <textarea id="box-coordinates" placeholder="width, height (ex: 100, 50)"></textarea>
+    </div>
+
+    <div class="control-box" style="text-align: center;">
+        <button class="controls-button" onclick="Main()">Start</button>
+        <p></p>
+        <button class="controls-button" onclick="Reset()">Reset</button>
+        <p></p>
+        Status: <span id="status" style="color:rgb(255, 255, 0)">Idle</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
