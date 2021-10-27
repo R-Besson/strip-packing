@@ -846,7 +846,7 @@ function Main() {
         // -------------------------- //
 
 
-        sessionInfo.StartTime = (new Date()).getTime()
+        sessionInfo.StartTime = performance.now()
         // Start Main Iteration over Rectangles //
         for (let rid = 0; rid < g_Rectangles.length; rid++) {
             let res = getBestHole(g_Rectangles[rid], 1, sessionInfo.CanRotate)
@@ -912,7 +912,7 @@ function Main() {
         // End Main For Loop //
 
         // Show Run Time (Time it took to calculate position + orientation of all holes) //
-        sessionInfo.EndTime = (new Date()).getTime()
+        sessionInfo.EndTime = performance.now()
         sessionInfo.RunTime = capNumber((sessionInfo.EndTime - sessionInfo.StartTime) / 1000, 3)
         if (sessionInfo.RunTime < 60) {
             outputFields.runTime.innerHTML = sessionInfo.RunTime + " s"
@@ -992,7 +992,7 @@ function Main() {
             const w = (rectangle.x2 - rectangle.x1)
             const h = (rectangle.y2 - rectangle.y1)
 
-            outputRectangles.innerHTML = outputRectangles.innerHTML + rectangle.id + "'" + scaleString(rectangle.id, 3) + "&nbsp;:&nbsp;&nbsp;" + w + scaleString(w, 3) + " (width) x " + h + scaleString(h, 3) + " (height)  [ " + rectangle.x1 + scaleString(rectangle.x1, 5) + ",  " + rectangle.y1 + scaleString(rectangle.y1, 5) + ", " + rectangle.x2 + scaleString(rectangle.x2, 5) + ", " + rectangle.y2 + scaleString(rectangle.y2, 5) + "]<p></p><p></p>"
+            outputRectangles.innerHTML = `${outputRectangles.innerHTML + rectangle.id}'${scaleString(rectangle.id, 3)}&nbsp;:&nbsp;&nbsp;${w}${scaleString(w, 3)} (width) x ${h}${scaleString(h, 3)} (height)  [ ${rectangle.x1}${scaleString(rectangle.x1, 5)},  ${rectangle.y1}${scaleString(rectangle.y1, 5)}, ${rectangle.x2}${scaleString(rectangle.x2, 5)}, ${rectangle.y2}${scaleString(rectangle.y2, 5)}]<p></p><p></p>`
 
             let nRectangle = new Rectangle(rectangle.x1 * 2, rectangle.y1 * 2, rectangle.x2 * 2, rectangle.y2 * 2, rectangle.id, rectangle.origin)
             drawRectangle(nRectangle)
