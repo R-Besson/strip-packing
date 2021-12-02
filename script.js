@@ -1,1 +1,1292 @@
-const _0x10f0dd=_0x19ed;(function(_0x310006,_0xfed960){const _0x3abbd9=_0x19ed,_0xd10120=_0x310006();while(!![]){try{const _0xd5624f=-parseInt(_0x3abbd9(0x198))/0x1*(-parseInt(_0x3abbd9(0x167))/0x2)+-parseInt(_0x3abbd9(0x162))/0x3*(parseInt(_0x3abbd9(0x18c))/0x4)+parseInt(_0x3abbd9(0x14a))/0x5*(-parseInt(_0x3abbd9(0x19d))/0x6)+parseInt(_0x3abbd9(0x16f))/0x7*(parseInt(_0x3abbd9(0x18d))/0x8)+parseInt(_0x3abbd9(0x145))/0x9+parseInt(_0x3abbd9(0x179))/0xa+-parseInt(_0x3abbd9(0x146))/0xb;if(_0xd5624f===_0xfed960)break;else _0xd10120['push'](_0xd10120['shift']());}catch(_0x553d18){_0xd10120['push'](_0xd10120['shift']());}}}(_0x3b29,0xdad09));let options={'canRotate':![],'width':0x0,'randomNumber':0x1},outputFields={},inProgress=![],g_Holes=[],g_Rectangles=[];const INFINITY=0xa**0xa;let main=document[_0x10f0dd(0x17e)](_0x10f0dd(0x182)),state=document[_0x10f0dd(0x148)](_0x10f0dd(0x142)),canvas=document[_0x10f0dd(0x148)]('output-canvas');canvas['width']=canvas[_0x10f0dd(0x161)],canvas['height']=canvas[_0x10f0dd(0x16a)];let canvasCTX=canvas['getContext']('2d'),gridWidth=document[_0x10f0dd(0x148)](_0x10f0dd(0x192)),gridHeight=document[_0x10f0dd(0x148)](_0x10f0dd(0x151)),outputBox=document[_0x10f0dd(0x148)]('output-box'),outputRectanglesBox=document['getElementById'](_0x10f0dd(0x172)),outputRectangles=document[_0x10f0dd(0x148)](_0x10f0dd(0x19a)),coordinateBox=document[_0x10f0dd(0x148)]('box-coordinates');class Rectangle{constructor(_0x3d6bdf,_0x32e2a3,_0x58d7a6,_0x3f3b84,_0x5ebe4f,_0x3faf28){const _0x3e0b30=_0x10f0dd;this['x1']=_0x3d6bdf,this['y1']=_0x32e2a3,this['x2']=_0x58d7a6,this['y2']=_0x3f3b84,this['id']=_0x5ebe4f,this[_0x3e0b30(0x184)]=_0x3faf28;}}class Hole{constructor(_0x1fff80,_0x43542a,_0x5a9e84,_0xf8d1b9,_0x738b1f,_0x5d83e8){const _0x134bb8=_0x10f0dd;this['x1']=_0x1fff80,this['y1']=_0x43542a,this['x2']=_0x5a9e84,this['y2']=_0xf8d1b9,this['id']=_0x738b1f,this[_0x134bb8(0x184)]=_0x5d83e8;}}let info=Array[_0x10f0dd(0x158)](document[_0x10f0dd(0x176)](_0x10f0dd(0x149)));info[_0x10f0dd(0x199)](_0x8fcdd4=>{const _0x2085cf=_0x10f0dd;outputFields[_0x8fcdd4[_0x2085cf(0x14b)]['name'][_0x2085cf(0x188)]]=_0x8fcdd4;});let toggles=Array[_0x10f0dd(0x158)](document[_0x10f0dd(0x176)](_0x10f0dd(0x189)));toggles[_0x10f0dd(0x199)](_0x2a386d=>{const _0x352b68=_0x10f0dd;_0x2a386d[_0x352b68(0x177)][0x0][_0x352b68(0x155)]('click',()=>{const _0x142f26=_0x352b68,_0x3e6b4c=_0x2a386d['attributes'][_0x142f26(0x18e)][_0x142f26(0x188)];options[_0x3e6b4c]=!options[_0x3e6b4c];});});let textBoxes=Array['from'](document[_0x10f0dd(0x176)](_0x10f0dd(0x170)));textBoxes[_0x10f0dd(0x199)](_0x337802=>{const _0xf0bf0a=_0x10f0dd;_0x337802['addEventListener'](_0xf0bf0a(0x193),()=>{const _0x5f1d01=_0xf0bf0a,_0xfdb124=_0x337802[_0x5f1d01(0x14b)][_0x5f1d01(0x18e)]['value'];if(_0x337802[_0x5f1d01(0x188)])_0x337802[_0x5f1d01(0x188)]=clamp(parseInt(_0x337802[_0x5f1d01(0x188)]),parseInt(_0x337802[_0x5f1d01(0x14b)][_0x5f1d01(0x19b)][_0x5f1d01(0x188)]),parseInt(_0x337802['attributes']['max'][_0x5f1d01(0x188)])),options[_0xfdb124]=parseInt(capNumber(_0x337802[_0x5f1d01(0x188)],0x0));else options[_0xfdb124]=0x0;});});function randomizeCoords(){const _0x264a1d=_0x10f0dd;let _0x33535e='';for(let _0x12e5e7=0x0;_0x12e5e7<options[_0x264a1d(0x14e)];_0x12e5e7++){_0x33535e=_0x33535e+Random(0x63)+',\x20'+Random(0x63);if(_0x12e5e7!==options[_0x264a1d(0x14e)]-0x1)_0x33535e=_0x33535e+'\x0a';}coordinateBox['value']=_0x33535e;}function fitIn(_0x4d97e4,_0x451285){const _0x1ffeff=_0x4d97e4['x2']-_0x4d97e4['x1'],_0x3f8078=_0x4d97e4['y2']-_0x4d97e4['y1'],_0x24ed22=_0x451285['x2']-_0x451285['x1'],_0xa7d64a=_0x451285['y2']-_0x451285['y1'];if(_0x1ffeff<_0x24ed22&&_0x3f8078<_0xa7d64a)return!![];return![];}function _0x19ed(_0x379b13,_0x2c14f0){const _0x3b2932=_0x3b29();return _0x19ed=function(_0x19ed7c,_0x20a3d2){_0x19ed7c=_0x19ed7c-0x141;let _0x2f2e4c=_0x3b2932[_0x19ed7c];return _0x2f2e4c;},_0x19ed(_0x379b13,_0x2c14f0);}function _fitIn(_0x18dbc2,_0x1cf469){if(_0x18dbc2['x1']>=_0x1cf469['x1']&&_0x18dbc2['y1']>=_0x1cf469['y1']&&_0x18dbc2['x2']<=_0x1cf469['x2']&&_0x18dbc2['y2']<=_0x1cf469['y2'])return!![];return![];}function holeCovered(_0x7bee4c,_0x1d5622,_0x9d52f1){const _0x594d8d=_0x10f0dd;for(let _0x585acb=0x0;_0x585acb<_0x9d52f1[_0x594d8d(0x14f)];_0x585acb++){let _0x487660=_0x9d52f1[_0x585acb];if(_0x487660!==_0x1d5622&&_fitIn(_0x7bee4c,_0x487660))return!![];}return![];}function rotateRectangle(_0x42b14c){const _0x4a84c3=_0x10f0dd;let _0x142ab7=new Rectangle(_0x42b14c['x1'],_0x42b14c['y1'],_0x42b14c['x2'],_0x42b14c['y2'],_0x42b14c['id'],_0x42b14c[_0x4a84c3(0x184)]);const _0x588424=_0x142ab7['x2'],_0x1984b5=_0x142ab7['y2'];return _0x142ab7['x2']=_0x1984b5,_0x142ab7['y2']=_0x588424,_0x142ab7;}function removeHole(_0x5a2c81,_0x20f612){const _0x155a8e=_0x10f0dd;let _0x354e25=[];for(let _0x559221=0x0;_0x559221<_0x20f612[_0x155a8e(0x14f)];_0x559221++){_0x20f612[_0x559221]!==_0x5a2c81&&_0x354e25['push'](_0x20f612[_0x559221]);}_0x20f612=_0x354e25;}function addNewHole(_0x6e92b8,_0x74a5f){const _0x48e77b=_0x10f0dd;_0x6e92b8['id']=_0x74a5f[_0x48e77b(0x14f)]+0x1,_0x74a5f[_0x74a5f[_0x48e77b(0x14f)]]=_0x6e92b8;}function calculateHeight(_0x4770db,_0x8b30f6){return _0x8b30f6['y1']+(_0x4770db['y2']-_0x4770db['y1']);}function createNewHoles(_0x50a62b,_0x2d8b3d,_0x3f0290){let _0x2fa225=![];!_0x2fa225&&_0x50a62b['x1']===_0x2d8b3d['x1']&&_0x50a62b['y1']===_0x2d8b3d['y1']&&_0x50a62b['x2']===_0x2d8b3d['x2']&&_0x50a62b['y2']===_0x2d8b3d['y2']&&(_0x2fa225=!![]);if(!_0x2fa225&&_0x50a62b['x1']<=_0x2d8b3d['x1']&&_0x50a62b['y1']<=_0x2d8b3d['y1']&&_0x50a62b['x2']>=_0x2d8b3d['x2']&&_0x50a62b['y2']>_0x2d8b3d['y1']&&_0x50a62b['y2']<_0x2d8b3d['y2']){_0x2fa225=!![];let _0x5d6b6f=new Hole(_0x2d8b3d['x1'],_0x50a62b['y2'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0x2);!holeCovered(_0x5d6b6f,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x5d6b6f,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']>_0x2d8b3d['x1']&&_0x50a62b['x1']<_0x2d8b3d['x2']&&_0x50a62b['y1']<=_0x2d8b3d['y1']&&_0x50a62b['x2']>=_0x2d8b3d['x2']&&_0x50a62b['y2']>=_0x2d8b3d['y2']){_0x2fa225=!![];let _0x4933d6=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x50a62b['x1'],_0x2d8b3d['y2'],0x0,0x3);!holeCovered(_0x4933d6,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x4933d6,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']<=_0x2d8b3d['x1']&&_0x50a62b['y1']>_0x2d8b3d['y1']&&_0x50a62b['y1']<_0x2d8b3d['y2']&&_0x50a62b['x2']>=_0x2d8b3d['x2']&&_0x50a62b['y2']>=_0x2d8b3d['y2']){_0x2fa225=!![];let _0x18c493=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x50a62b['y1'],0x0,0x4);!holeCovered(_0x18c493,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x18c493,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']<=_0x2d8b3d['x1']&&_0x50a62b['y1']<=_0x2d8b3d['y1']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']<_0x2d8b3d['x2']&&_0x50a62b['y2']>=_0x2d8b3d['y2']){_0x2fa225=!![];let _0x19947b=new Hole(_0x50a62b['x2'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0x5);!holeCovered(_0x19947b,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x19947b,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']<=_0x2d8b3d['x1']&&_0x50a62b['y1']<=_0x2d8b3d['y1']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']<_0x2d8b3d['x2']&&_0x50a62b['y2']>_0x2d8b3d['y1']&&_0x50a62b['y2']<_0x2d8b3d['y2']){_0x2fa225=!![];let _0x152be4=new Hole(_0x2d8b3d['x1'],_0x50a62b['y2'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0x6);!holeCovered(_0x152be4,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x152be4,_0x3f0290);let _0x180381=new Hole(_0x50a62b['x2'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0x6);!holeCovered(_0x180381,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x180381,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']>_0x2d8b3d['x1']&&_0x50a62b['x1']<_0x2d8b3d['x2']&&_0x50a62b['y1']<=_0x2d8b3d['y1']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']>=_0x2d8b3d['x2']&&_0x50a62b['y2']>_0x2d8b3d['y1']&&_0x50a62b['y2']<_0x2d8b3d['y2']){_0x2fa225=!![];let _0xa15833=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x50a62b['x1'],_0x2d8b3d['y2'],0x0,0x7);!holeCovered(_0xa15833,_0x2d8b3d,_0x3f0290)&&addNewHole(_0xa15833,_0x3f0290);let _0x53d1a1=new Hole(_0x2d8b3d['x1'],_0x50a62b['y2'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0x7);!holeCovered(_0x53d1a1,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x53d1a1,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']<_0x2d8b3d['x2']&&_0x50a62b['x1']>_0x2d8b3d['x1']&&_0x50a62b['y1']>_0x2d8b3d['y1']&&_0x50a62b['y1']<_0x2d8b3d['y2']&&_0x50a62b['x2']>=_0x2d8b3d['x2']&&_0x50a62b['y2']>=_0x2d8b3d['y2']){_0x2fa225=!![];let _0x1aef39=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x50a62b['y1'],0x0,0x8);!holeCovered(_0x1aef39,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x1aef39,_0x3f0290);let _0x503eae=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x50a62b['x1'],_0x2d8b3d['y2'],0x0,0x8);!holeCovered(_0x503eae,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x503eae,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']<=_0x2d8b3d['x1']&&_0x50a62b['y1']>_0x2d8b3d['y1']&&_0x50a62b['y1']<_0x2d8b3d['y2']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']<_0x2d8b3d['x2']&&_0x50a62b['y2']>=_0x2d8b3d['y2']){_0x2fa225=!![];let _0x307d63=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x50a62b['y1'],0x0,0x9);!holeCovered(_0x307d63,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x307d63,_0x3f0290);let _0x101d1a=new Hole(_0x50a62b['x2'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0x9);!holeCovered(_0x101d1a,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x101d1a,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']>_0x2d8b3d['x1']&&_0x50a62b['x1']<_0x2d8b3d['x2']&&_0x50a62b['y1']<=_0x2d8b3d['y1']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']<_0x2d8b3d['x2']&&_0x50a62b['y2']>=_0x2d8b3d['y2']){_0x2fa225=!![];let _0x31661b=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x50a62b['x1'],_0x2d8b3d['y2'],0x0,0xa);!holeCovered(_0x31661b,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x31661b,_0x3f0290);let _0x3fc80b=new Hole(_0x50a62b['x2'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xa);!holeCovered(_0x3fc80b,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x3fc80b,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']<=_0x2d8b3d['x1']&&_0x50a62b['y1']>_0x2d8b3d['y1']&&_0x50a62b['y1']<_0x2d8b3d['y2']&&_0x50a62b['x2']>=_0x2d8b3d['x2']&&_0x50a62b['y2']>_0x2d8b3d['y1']&&_0x50a62b['y2']<_0x2d8b3d['y2']){_0x2fa225=!![];let _0x4166f7=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x50a62b['y1'],0x0,0xb);!holeCovered(_0x4166f7,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x4166f7,_0x3f0290);let _0x6fcd5e=new Hole(_0x2d8b3d['x1'],_0x50a62b['y2'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xb);!holeCovered(_0x6fcd5e,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x6fcd5e,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']>_0x2d8b3d['x1']&&_0x50a62b['x1']<_0x2d8b3d['x2']&&_0x50a62b['y1']<=_0x2d8b3d['y1']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']<_0x2d8b3d['x2']&&_0x50a62b['y2']>_0x2d8b3d['y1']&&_0x50a62b['y2']<_0x2d8b3d['y2']){_0x2fa225=!![];let _0x277176=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x50a62b['x1'],_0x2d8b3d['y2'],0x0,0xc);!holeCovered(_0x277176,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x277176,_0x3f0290);let _0x4f87de=new Hole(_0x2d8b3d['x1'],_0x50a62b['y2'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xc);!holeCovered(_0x4f87de,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x4f87de,_0x3f0290);let _0xdb760c=new Hole(_0x50a62b['x2'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xc);!holeCovered(_0xdb760c,_0x2d8b3d,_0x3f0290)&&addNewHole(_0xdb760c,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']>_0x2d8b3d['x1']&&_0x50a62b['x1']<_0x2d8b3d['x2']&&_0x50a62b['y1']>_0x2d8b3d['y1']&&_0x50a62b['y1']<_0x2d8b3d['y2']&&_0x50a62b['x2']>=_0x2d8b3d['x2']&&_0x50a62b['y2']>_0x2d8b3d['y1']&&_0x50a62b['y2']<_0x2d8b3d['y2']){_0x2fa225=!![];let _0x5d7acc=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x50a62b['y1'],0x0,0xd);!holeCovered(_0x5d7acc,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x5d7acc,_0x3f0290);let _0x5a97e5=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x50a62b['x1'],_0x2d8b3d['y2'],0x0,0xd);!holeCovered(_0x5a97e5,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x5a97e5,_0x3f0290);let _0x5223ef=new Hole(_0x2d8b3d['x1'],_0x50a62b['y2'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xd);!holeCovered(_0x5223ef,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x5223ef,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']>_0x2d8b3d['x1']&&_0x50a62b['x1']<_0x2d8b3d['x2']&&_0x50a62b['y1']>_0x2d8b3d['y1']&&_0x50a62b['y1']<_0x2d8b3d['y2']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']<_0x2d8b3d['x2']&&_0x50a62b['y2']>=_0x2d8b3d['y2']){_0x2fa225=!![];let _0x494e9a=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x50a62b['x1'],_0x2d8b3d['y2'],0x0,0xe);!holeCovered(_0x494e9a,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x494e9a,_0x3f0290);let _0x3fff44=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x50a62b['y1'],0x0,0xe);!holeCovered(_0x3fff44,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x3fff44,_0x3f0290);let _0x125bd6=new Hole(_0x50a62b['x2'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xe);!holeCovered(_0x125bd6,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x125bd6,_0x3f0290);}if(!_0x2fa225&&_0x50a62b['x1']<=_0x2d8b3d['x1']&&_0x50a62b['y1']>_0x2d8b3d['y1']&&_0x50a62b['y1']<_0x2d8b3d['y2']&&_0x50a62b['x2']>_0x2d8b3d['x1']&&_0x50a62b['x2']<_0x2d8b3d['x2']&&_0x50a62b['y2']>_0x2d8b3d['y1']&&_0x50a62b['y2']<_0x2d8b3d['y2']){_0x2fa225=!![];let _0x5c9df2=new Hole(_0x2d8b3d['x1'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x50a62b['y1'],0x0,0xf);!holeCovered(_0x5c9df2,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x5c9df2,_0x3f0290);let _0x2e74f1=new Hole(_0x50a62b['x2'],_0x2d8b3d['y1'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xf);!holeCovered(_0x2e74f1,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x2e74f1,_0x3f0290);let _0x2ccf6d=new Hole(_0x2d8b3d['x1'],_0x50a62b['y2'],_0x2d8b3d['x2'],_0x2d8b3d['y2'],0x0,0xf);!holeCovered(_0x2ccf6d,_0x2d8b3d,_0x3f0290)&&addNewHole(_0x2ccf6d,_0x3f0290);}if(_0x2fa225)return removeHole(_0x2d8b3d,_0x3f0290),g_Holes=sortByHeight(g_Holes),!![];return![];}function overlap(_0x2ed2e5,_0x30c680){if(_0x2ed2e5['x1']>_0x30c680['x1']&&_0x2ed2e5['x1']<_0x30c680['x2']&&_0x2ed2e5['y1']>_0x30c680['y1']&&_0x2ed2e5['y1']<_0x30c680['y2'])return!![];if(_0x2ed2e5['x2']>_0x30c680['x1']&&_0x2ed2e5['x2']<_0x30c680['x2']&&_0x2ed2e5['y1']>_0x30c680['y1']&&_0x2ed2e5['y1']<_0x30c680['y2'])return!![];if(_0x2ed2e5['x1']>_0x30c680['x1']&&_0x2ed2e5['x1']<_0x30c680['x2']&&_0x2ed2e5['y2']>_0x30c680['y1']&&_0x2ed2e5['y2']<_0x30c680['y2'])return!![];if(_0x2ed2e5['x2']>_0x30c680['x1']&&_0x2ed2e5['x2']<_0x30c680['x2']&&_0x2ed2e5['y2']>_0x30c680['y1']&&_0x2ed2e5['y2']<_0x30c680['y2'])return!![];if(_0x2ed2e5['x1']<_0x30c680['x2']&&_0x2ed2e5['x2']>_0x30c680['x1']&&_0x2ed2e5['y1']>=_0x30c680['y1']&&_0x2ed2e5['y1']<_0x30c680['y2'])return!![];if(_0x2ed2e5['x1']<_0x30c680['x2']&&_0x2ed2e5['x2']>_0x30c680['x1']&&_0x2ed2e5['y2']<=_0x30c680['y2']&&_0x2ed2e5['y2']>_0x30c680['y1'])return!![];if(_0x2ed2e5['y1']<_0x30c680['y2']&&_0x2ed2e5['y2']>_0x30c680['y1']&&_0x2ed2e5['x1']<_0x30c680['x2']&&_0x2ed2e5['x1']>=_0x30c680['x1'])return!![];if(_0x2ed2e5['y1']<_0x30c680['y2']&&_0x2ed2e5['y2']>_0x30c680['y1']&&_0x2ed2e5['x2']<=_0x30c680['x2']&&_0x2ed2e5['x2']>_0x30c680['x1'])return!![];return![];}function getBestHole(_0x35be5c,_0x1506e7,_0x35034f){const _0x344239=_0x10f0dd;let _0x48ccdd=null,_0x1cadd7=![];if(_0x1506e7===0x1){let _0x1ae04c=Infinity;for(let _0x31f0b5=0x0;_0x31f0b5<g_Holes[_0x344239(0x14f)];_0x31f0b5++){const _0x42d0d6=fitIn(_0x35be5c,g_Holes[_0x31f0b5]),_0x3375d2=calculateHeight(_0x35be5c,g_Holes[_0x31f0b5]);_0x42d0d6&&_0x3375d2<_0x1ae04c&&(_0x1ae04c=_0x3375d2,_0x48ccdd=g_Holes[_0x31f0b5],_0x1cadd7=![]);const _0x6310ae=fitIn(rotateRectangle(_0x35be5c),g_Holes[_0x31f0b5]),_0x3a09ef=calculateHeight(rotateRectangle(_0x35be5c),g_Holes[_0x31f0b5]);_0x35034f&&_0x6310ae&&_0x3a09ef<_0x1ae04c&&(_0x1ae04c=_0x3a09ef,_0x48ccdd=g_Holes[_0x31f0b5],_0x1cadd7=!![]);}}else{if(_0x1506e7===0x2){let _0x10dc3f=Infinity;for(let _0x8c035b=0x0;_0x8c035b<g_Holes[_0x344239(0x14f)];_0x8c035b++){g_Holes[_0x8c035b]['y1']<_0x10dc3f&&(!fitIn(_0x35be5c,g_Holes[_0x8c035b])?_0x35034f&&fitIn(rotateRectangle(_0x35be5c),g_Holes[_0x8c035b])&&(_0x1cadd7=!![],_0x10dc3f=g_Holes[_0x8c035b]['y1'],_0x48ccdd=g_Holes[_0x8c035b]):(_0x35034f&&fitIn(rotateRectangle(_0x35be5c),g_Holes[_0x8c035b])&&rotateRectangle(_0x35be5c)['y2']<_0x35be5c['y2']&&(_0x1cadd7=!![]),_0x10dc3f=g_Holes[_0x8c035b]['y1'],_0x48ccdd=g_Holes[_0x8c035b]));}}else{if(_0x1506e7===0x3){const _0x249cb9=(_0x35be5c['x2']-_0x35be5c['x1'])*(INFINITY-_0x35be5c['y1']);let _0x5cbc93=Infinity;for(let _0x420c92=0x0;_0x420c92<g_Holes['length'];_0x420c92++){const _0x3934ba=(g_Holes[_0x420c92]['x2']-g_Holes[_0x420c92]['x1'])*(INFINITY-g_Holes[_0x420c92]['y1']);Math[_0x344239(0x194)](_0x3934ba-_0x249cb9)<_0x5cbc93&&(_0x5cbc93=Math[_0x344239(0x194)](_0x3934ba-_0x249cb9),_0x48ccdd=g_Holes[_0x420c92]);}}}}return{'bestHole':_0x48ccdd,'doRotation':_0x1cadd7};}function Main(){const _0x4ac107=_0x10f0dd;if(!inProgress){clearCanvas(),inProgress=!![],state[_0x4ac107(0x14b)][_0x4ac107(0x14c)][_0x4ac107(0x188)]=_0x4ac107(0x186),state[_0x4ac107(0x152)]=_0x4ac107(0x15b);if(options[_0x4ac107(0x17c)]===0x0)return state['attributes'][_0x4ac107(0x14c)]['value']='color:rgb(255,\x200,\x200)',state[_0x4ac107(0x152)]='Failed:\x20Width\x20is\x200',inProgress=![],setTimeout(()=>{!inProgress&&Reset();},0x7d0);let _0x118467=processCoords(coordinateBox[_0x4ac107(0x188)]);if(!_0x118467[_0x4ac107(0x183)])return state[_0x4ac107(0x14b)][_0x4ac107(0x14c)][_0x4ac107(0x188)]=_0x4ac107(0x166),state[_0x4ac107(0x152)]='Failed:\x20Wrong\x20Format',inProgress=![],setTimeout(()=>{!inProgress&&Reset();},0x7d0);let _0x45d427={'CanRotate':options[_0x4ac107(0x16d)],'Width':options[_0x4ac107(0x17c)],'StartTime':0x0,'EndTime':0x0,'RunTime':0x0};g_Rectangles=sortByArea(_0x118467['coords']),g_Holes=[new Hole(0x0,0x0,_0x45d427['Width'],INFINITY,0x1,0x0)];for(let _0x13fa4e=0x0;_0x13fa4e<g_Rectangles[_0x4ac107(0x14f)];_0x13fa4e++){if(g_Rectangles[_0x13fa4e]['x2']-g_Rectangles[_0x13fa4e]['x1']>0x3e8||g_Rectangles[_0x13fa4e]['y2']-g_Rectangles[_0x13fa4e]['y1']>0x3e8)return state['attributes'][_0x4ac107(0x14c)]['value']='color:rgb(255,\x200,\x200)',state[_0x4ac107(0x152)]=_0x4ac107(0x144)+g_Rectangles[_0x13fa4e]['id']+_0x4ac107(0x180),inProgress=![],setTimeout(()=>{!inProgress&&Reset();},0x7d0);if(g_Rectangles[_0x13fa4e]['x2']-g_Rectangles[_0x13fa4e]['x1']>_0x45d427[_0x4ac107(0x15a)]&&g_Rectangles[_0x13fa4e]['y2']-g_Rectangles[_0x13fa4e]['y1']>_0x45d427[_0x4ac107(0x15a)]||!_0x45d427[_0x4ac107(0x195)]&&g_Rectangles[_0x13fa4e]['x2']-g_Rectangles[_0x13fa4e]['x1']>_0x45d427['Width'])return state[_0x4ac107(0x14b)]['style'][_0x4ac107(0x188)]=_0x4ac107(0x166),state[_0x4ac107(0x152)]=_0x4ac107(0x144)+g_Rectangles[_0x13fa4e]['id']+_0x4ac107(0x180),inProgress=![],setTimeout(()=>{!inProgress&&Reset();},0x7d0);}_0x45d427[_0x4ac107(0x159)]=performance[_0x4ac107(0x15f)]();for(let _0x2b2fd1=0x0;_0x2b2fd1<g_Rectangles[_0x4ac107(0x14f)];_0x2b2fd1++){let _0x2a5c33=getBestHole(g_Rectangles[_0x2b2fd1],0x1,_0x45d427[_0x4ac107(0x195)]);if(_0x2a5c33[_0x4ac107(0x156)]!==null){let _0x174e70=_0x2a5c33[_0x4ac107(0x156)];_0x2a5c33[_0x4ac107(0x18a)]&&(g_Rectangles[_0x2b2fd1]=rotateRectangle(g_Rectangles[_0x2b2fd1]));const _0x38f64d=g_Rectangles[_0x2b2fd1]['x2']-g_Rectangles[_0x2b2fd1]['x1'],_0x4c9270=g_Rectangles[_0x2b2fd1]['y2']-g_Rectangles[_0x2b2fd1]['y1'];g_Rectangles[_0x2b2fd1]['x2']=_0x174e70['x1']+_0x38f64d,g_Rectangles[_0x2b2fd1]['y2']=_0x174e70['y1']+_0x4c9270,g_Rectangles[_0x2b2fd1]['x1']=_0x174e70['x1'],g_Rectangles[_0x2b2fd1]['y1']=_0x174e70['y1'],g_Rectangles[_0x2b2fd1]['origin']=_0x174e70[_0x4ac107(0x184)];let _0x4b48c5=[];for(let _0xedd411=0x0;_0xedd411<g_Holes['length'];_0xedd411++){if(overlap(g_Rectangles[_0x2b2fd1],g_Holes[_0xedd411])){if(!createNewHoles(g_Rectangles[_0x2b2fd1],g_Holes[_0xedd411],_0x4b48c5))return state[_0x4ac107(0x14b)]['style']['value']='color:rgb(255,\x200,\x200)',state[_0x4ac107(0x152)]=_0x4ac107(0x175)+g_Rectangles[_0x2b2fd1]['id'],inProgress=![],setTimeout(()=>{!inProgress&&Reset();},0x7d0);}else _0x4b48c5[_0x4b48c5[_0x4ac107(0x14f)]]=g_Holes[_0xedd411];}g_Holes=sortByHeight(_0x4b48c5);if(!createNewHoles(g_Rectangles[_0x2b2fd1],_0x174e70,g_Holes))return state['attributes'][_0x4ac107(0x14c)][_0x4ac107(0x188)]=_0x4ac107(0x166),state[_0x4ac107(0x152)]=_0x4ac107(0x175)+g_Rectangles[_0x2b2fd1]['id'],inProgress=![],setTimeout(()=>{!inProgress&&Reset();},0x7d0);g_Holes=sortByHeight(g_Holes);}else return state[_0x4ac107(0x14b)]['style'][_0x4ac107(0x188)]='color:rgb(255,\x200,\x200)',state[_0x4ac107(0x152)]=_0x4ac107(0x196)+g_Rectangles[_0x2b2fd1]['id'],inProgress=![],setTimeout(()=>{!inProgress&&Reset();},0x7d0);}_0x45d427[_0x4ac107(0x17d)]=performance[_0x4ac107(0x15f)](),_0x45d427[_0x4ac107(0x16e)]=capNumber((_0x45d427[_0x4ac107(0x17d)]-_0x45d427[_0x4ac107(0x159)])/0x3e8,0x3);if(_0x45d427[_0x4ac107(0x16e)]<0x3c)outputFields[_0x4ac107(0x16c)][_0x4ac107(0x152)]=_0x45d427['RunTime']+'\x20s';else{const _0x406562=capNumber(_0x45d427['RunTime']/0x3c,0x0),_0xac6ba=capNumber(_0x45d427[_0x4ac107(0x16e)]/0x3c-_0x406562,0x2);outputFields[_0x4ac107(0x16c)]['innerHTML']=_0x406562+'\x20m\x20'+_0xac6ba+'\x20s';}g_Rectangles=sortByY(g_Rectangles);let _0xab000f=0x0,_0x29c787=0x0;g_Rectangles[_0x4ac107(0x199)](_0x41fd2b=>{const _0x589357=_0x41fd2b['x2']-_0x41fd2b['x1'],_0x163dcb=_0x41fd2b['y2']-_0x41fd2b['y1'];_0xab000f=_0xab000f+_0x589357*_0x163dcb,_0x41fd2b['y2']>_0x29c787&&(_0x29c787=_0x41fd2b['y2']);}),canvas[_0x4ac107(0x14c)][_0x4ac107(0x163)]=_0x29c787*0x2+'px',canvas[_0x4ac107(0x163)]=canvas['clientHeight'],gridHeight['style']['marginTop']=_0x29c787*0x2+0x12+'px',gridHeight[_0x4ac107(0x152)]=_0x29c787;const _0x1a558e=(0x2-Math[_0x4ac107(0x160)](gridHeight[_0x4ac107(0x15c)]()['width'])/0x2)[_0x4ac107(0x174)]();gridHeight[_0x4ac107(0x14c)][_0x4ac107(0x165)]=Math[_0x4ac107(0x190)](_0x1a558e)+'px',canvas['style'][_0x4ac107(0x17c)]=_0x45d427[_0x4ac107(0x15a)]*0x2+'px',canvas[_0x4ac107(0x17c)]=canvas[_0x4ac107(0x161)],gridWidth[_0x4ac107(0x152)]=_0x45d427[_0x4ac107(0x15a)];const _0x570443=(_0x45d427[_0x4ac107(0x15a)]*0x2-Math[_0x4ac107(0x160)](gridWidth['getBoundingClientRect']()[_0x4ac107(0x17c)])/0x2)['toString']();gridWidth[_0x4ac107(0x14c)]['marginLeft']=Math[_0x4ac107(0x190)](_0x570443)+'px',outputBox[_0x4ac107(0x14c)][_0x4ac107(0x165)]=_0x45d427[_0x4ac107(0x15a)]*0x2+0x136+'px',outputRectanglesBox['style'][_0x4ac107(0x165)]=_0x45d427[_0x4ac107(0x15a)]*0x2+0x136+'px';let _0x91fb78=0x0;g_Rectangles['forEach'](_0xbc5987=>{const _0x544de5=_0xbc5987['x2']-_0xbc5987['x1'],_0x5134b9=_0xbc5987['y2']-_0xbc5987['y1'];_0x91fb78=_0x91fb78+_0x544de5*_0x5134b9;}),_0x91fb78=_0x91fb78/_0x45d427['Width'],outputFields['theoreticalMinHeight'][_0x4ac107(0x152)]=Math[_0x4ac107(0x160)](_0x91fb78),outputRectangles[_0x4ac107(0x152)]='<p></p><p></p>',g_Rectangles[_0x4ac107(0x199)](_0x494053=>{const _0xf23c5b=_0x4ac107,_0x544cc2=_0x494053['x2']-_0x494053['x1'],_0x50d8db=_0x494053['y2']-_0x494053['y1'];outputRectangles[_0xf23c5b(0x152)]=outputRectangles['innerHTML']+_0x494053['id']+'\x27'+scaleString(_0x494053['id'],0x3)+_0xf23c5b(0x19c)+_0x544cc2+scaleString(_0x544cc2,0x3)+'\x20(width)\x20x\x20'+_0x50d8db+scaleString(_0x50d8db,0x3)+_0xf23c5b(0x150)+_0x494053['x1']+scaleString(_0x494053['x1'],0x5)+_0xf23c5b(0x164)+_0x494053['y1']+scaleString(_0x494053['y1'],0x5)+',\x20'+_0x494053['x2']+scaleString(_0x494053['x2'],0x5)+',\x20'+_0x494053['y2']+scaleString(_0x494053['y2'],0x5)+_0xf23c5b(0x185);let _0x3a996d=new Rectangle(_0x494053['x1']*0x2,_0x494053['y1']*0x2,_0x494053['x2']*0x2,_0x494053['y2']*0x2,_0x494053['id'],_0x494053[_0xf23c5b(0x184)]);drawRectangle(_0x3a996d);});let _0x232641=_0x29c787*_0x45d427['Width'];outputFields['endHeight'][_0x4ac107(0x152)]=_0x29c787,outputFields[_0x4ac107(0x181)][_0x4ac107(0x152)]=capNumber((_0x232641-_0xab000f)/_0x232641*0x64,0x3)+'\x20%',outputFields[_0x4ac107(0x168)][_0x4ac107(0x152)]=capNumber(_0xab000f/_0x232641*0x64,0x3)+'\x20%',g_Rectangles=[],g_Holes=[],inProgress=![],state[_0x4ac107(0x14b)][_0x4ac107(0x14c)][_0x4ac107(0x188)]='color:rgb(0,\x20255,\x200)',state[_0x4ac107(0x152)]='Done!';}}function Reset(){const _0x524701=_0x10f0dd;if(!inProgress){g_Rectangles=[],g_Holes=[],clearCanvas(),outputBox['style'][_0x524701(0x165)]=0x282+'px',outputRectanglesBox[_0x524701(0x14c)][_0x524701(0x165)]=0x282+'px',canvas[_0x524701(0x14c)][_0x524701(0x163)]=0x214+'px',canvas[_0x524701(0x163)]=canvas['clientHeight'],canvas[_0x524701(0x14c)][_0x524701(0x17c)]=0x14c+'px',canvas[_0x524701(0x17c)]=canvas['clientWidth'],outputRectangles[_0x524701(0x152)]='';for(field in outputFields){outputFields[field][_0x524701(0x152)]='NaN';}gridWidth[_0x524701(0x152)]=0x0;const _0x3b0d51=(0x14c-Math['round'](gridWidth[_0x524701(0x15c)]()[_0x524701(0x17c)])/0x2)[_0x524701(0x174)]();gridWidth[_0x524701(0x14c)][_0x524701(0x165)]=Math[_0x524701(0x190)](_0x3b0d51)+'px',gridHeight[_0x524701(0x14c)][_0x524701(0x18f)]=0x226+'px',gridHeight[_0x524701(0x152)]=0x0;const _0x189164=(0x2-Math[_0x524701(0x160)](gridHeight[_0x524701(0x15c)]()[_0x524701(0x17c)])/0x2)[_0x524701(0x174)]();gridHeight[_0x524701(0x14c)][_0x524701(0x165)]=Math[_0x524701(0x190)](_0x189164)+'px',state[_0x524701(0x14b)]['style'][_0x524701(0x188)]=_0x524701(0x173),state[_0x524701(0x152)]=_0x524701(0x147),inProgress=![];}}let mergeSortComparison=(_0x52d900,_0x5815cc)=>{return _0x52d900[0x0]>_0x5815cc[0x0];};function sortByArea(_0x56f459){return mergeSortComparison=(_0x2f1bb0,_0x3f527b)=>{const _0x5d80e7=_0x2f1bb0[0x0]['x2']-_0x2f1bb0[0x0]['x1'],_0x353475=_0x2f1bb0[0x0]['y2']-_0x2f1bb0[0x0]['y1'],_0x50a20b=_0x3f527b[0x0]['x2']-_0x3f527b[0x0]['x1'],_0x535df0=_0x3f527b[0x0]['y2']-_0x3f527b[0x0]['y1'];return _0x5d80e7*_0x353475<_0x50a20b*_0x535df0;},mergeSort(_0x56f459);}function sortByWHDifference(_0x238081){return mergeSortComparison=(_0x12d454,_0x16c1b2)=>{const _0x49db1e=_0x19ed,_0x3fcb2f=_0x12d454[0x0]['x2']-_0x12d454[0x0]['x1'],_0xc90f4d=_0x12d454[0x0]['y2']-_0x12d454[0x0]['y1'],_0xe62da7=_0x16c1b2[0x0]['x2']-_0x16c1b2[0x0]['x1'],_0x4bdda6=_0x16c1b2[0x0]['y2']-_0x16c1b2[0x0]['y1'];return Math[_0x49db1e(0x194)](_0x3fcb2f-_0xc90f4d)>Math[_0x49db1e(0x194)](_0xe62da7-_0x4bdda6);},mergeSort(_0x238081);}function sortByHeight(_0x1085ed){return mergeSortComparison=(_0x349015,_0x2c5647)=>{const _0x43a763=_0x19ed;return Math[_0x43a763(0x194)](_0x349015[0x0]['y2'])>Math['abs'](_0x2c5647[0x0]['y2']);},mergeSort(_0x1085ed);}function sortByY(_0x5bb09a){return mergeSortComparison=(_0x1f85dc,_0x36d30a)=>{const _0x22036c=_0x19ed;return Math[_0x22036c(0x194)](_0x1f85dc[0x0]['y1'])>Math['abs'](_0x36d30a[0x0]['y1']);},mergeSort(_0x5bb09a);}function sortById(_0x368f8e){return mergeSortComparison=(_0x1cf77b,_0x4cbcb4)=>{return _0x1cf77b[0x0]['id']>_0x4cbcb4[0x0]['id'];},mergeSort(_0x368f8e);}function mergeArrays(_0x5444d3,_0x25d269){const _0xc9e31b=_0x10f0dd,_0x2d396c=[];while(_0x5444d3[_0xc9e31b(0x14f)]&&_0x25d269[_0xc9e31b(0x14f)]){_0x2d396c[_0xc9e31b(0x187)](mergeSortComparison(_0x5444d3,_0x25d269)?_0x25d269[_0xc9e31b(0x191)]():_0x5444d3[_0xc9e31b(0x191)]());}while(_0x5444d3[_0xc9e31b(0x14f)]){_0x2d396c['push'](_0x5444d3['shift']());}while(_0x25d269[_0xc9e31b(0x14f)]){_0x2d396c[_0xc9e31b(0x187)](_0x25d269[_0xc9e31b(0x191)]());}return _0x2d396c;}function mergeSort(_0x1ab200){const _0x47eb80=_0x10f0dd;if(_0x1ab200[_0x47eb80(0x14f)]<=0x1)return _0x1ab200;const _0xfd5680=Math['floor'](_0x1ab200['length']/0x2),_0xce4d10=_0x1ab200[_0x47eb80(0x171)](0x0,_0xfd5680),_0x3a4c29=_0x1ab200['slice'](_0xfd5680,_0x1ab200[_0x47eb80(0x14f)]),_0x33f4d5=mergeSort(_0xce4d10),_0x5ca426=mergeSort(_0x3a4c29);return mergeArrays(_0x33f4d5,_0x5ca426);}function capNumber(_0x487a3c,_0x337212){const _0x51a6f5=0xa**_0x337212;return(Math['round'](_0x487a3c*_0x51a6f5)/_0x51a6f5)['toFixed'](_0x337212);}function magnitude(_0x432ae2,_0x1e9951,_0x14332b,_0x53d950){const _0x47a3d3=_0x10f0dd;return Math[_0x47a3d3(0x141)]((_0x14332b-_0x432ae2)**0x2+(_0x53d950-_0x1e9951)**0x2);}function clamp(_0x1e14bc,_0x4c85ed,_0x252ebe){const _0x208dc9=_0x10f0dd;return Math[_0x208dc9(0x19b)](Math['max'](_0x1e14bc,_0x4c85ed),_0x252ebe);}function Random(_0x286ac7){const _0x734088=_0x10f0dd;return clamp(Math['floor'](Math[_0x734088(0x17a)]()*_0x286ac7),0xa,Infinity);}function scaleString(_0x3548f4,_0x2a1e4f){const _0x4220b1=_0x10f0dd;let _0x44cb0c='';for(let _0x1cac0b=0x0;_0x1cac0b<_0x2a1e4f-_0x3548f4['toString']()[_0x4220b1(0x14f)];_0x1cac0b++){_0x44cb0c=_0x44cb0c+'&nbsp;';}return _0x44cb0c;}function _0x3b29(){const _0x6d9036=['28367119tHWdPV','Idle','getElementById','output-info','1954145YpUcLZ','attributes','style','fillText','randomNumber','length','\x20(height)\x20\x20[\x20','height-value','innerHTML','lineWidth',',\x20100%,\x2070%)','addEventListener','bestHole','strokeRect','from','StartTime','Width','Working','getBoundingClientRect','font','hsl(','now','round','clientWidth','5001SfFBqt','height',',\x20\x20','marginLeft','color:rgb(255,\x200,\x200)','92XmfNCo','percUsed','14px\x20Arial','clientHeight','12px\x20Arial','runTime','canRotate','RunTime','14UGzZNo','input-box','slice','output-boxes','color:rgb(255,\x20255,\x200)','toString','Failed:\x20Couldn\x27t\x20place\x20rectangle\x20n°','getElementsByClassName','children','fillRect','390830UCOsZr','random','10px\x20Arial','width','EndTime','querySelector','fillStyle','\x20is\x20too\x20big.','percLost','main','success','origin',']<p></p><p></p>','color:rgb(0,\x20255,\x200)','push','value','switch','doRotation','rgb(50,\x2050,\x2050)','1912vPHnea','5787232bSbhBR','option','marginTop','floor','shift','width-value','input','abs','CanRotate','Failed:\x20Couldn\x27t\x20find\x20hole\x20for\x20rectangle\x20n°','rgb(255,255,255)','34315VpoLth','forEach','outputRectangles','min','&nbsp;:&nbsp;&nbsp;','6YhiOOS','sqrt','status','rgb(0,\x200,\x200)','Failed:\x20Box\x20n°','14385312DYDTao'];_0x3b29=function(){return _0x6d9036;};return _0x3b29();}function processCoords(_0x2a064e){const _0x94c435=_0x10f0dd;if(_0x2a064e===''||_0x2a064e[_0x94c435(0x14f)]<0x4)return{'success':![],'message':'c1'};let _0x2b892a=[],_0x693c6b=new Rectangle(0x0,0x0,0x0,0x0,0x0,0x0),_0x52ea51='x2',_0x5e69e7=![];for(let _0xf1b4ca=0x0;_0xf1b4ca<_0x2a064e[_0x94c435(0x14f)];_0xf1b4ca++){const _0x50dd1a=_0x2a064e[_0xf1b4ca];if(_0x50dd1a===','){_0x52ea51==='x2'?_0x52ea51='y2':_0x52ea51='x2';if(_0x5e69e7)return{'success':![],'message':'2'};_0x5e69e7=!![];if(_0xf1b4ca===_0x2a064e['length']-0x1)return{'success':![],'message':'c3'};}else{if(_0x50dd1a==='\x0a'){if(!parseInt(_0x693c6b['x2'])||!parseInt(_0x693c6b['y2']))return{'success':![],'message':'c3'};if(!_0x5e69e7)return{'success':![],'message':'c4'};_0x5e69e7=![],_0x693c6b['id']=_0x2b892a[_0x94c435(0x14f)]+0x1,_0x693c6b['x2']=parseInt(_0x693c6b['x2']),_0x693c6b['y2']=parseInt(_0x693c6b['y2']),_0x2b892a[_0x2b892a[_0x94c435(0x14f)]]=_0x693c6b,_0x693c6b=new Rectangle(0x0,0x0,0x0,0x0,0x0,0x0),_0x52ea51='x2';if(_0xf1b4ca===_0x2a064e[_0x94c435(0x14f)]-0x1)return{'success':![],'message':'c5'};}else{if(_0x50dd1a!=='\x20'){if(!parseInt(_0x50dd1a)&&_0x50dd1a!=='0')return{'success':![],'message':'c6'};if(!_0x693c6b[_0x52ea51])_0x693c6b[_0x52ea51]='';_0x693c6b[_0x52ea51]=_0x693c6b[_0x52ea51]+_0x50dd1a;}}}_0xf1b4ca===_0x2a064e[_0x94c435(0x14f)]-0x1&&parseInt(_0x693c6b['x2'])&&parseInt(_0x693c6b['y2'])&&(_0x693c6b['x2']=parseInt(_0x693c6b['x2']),_0x693c6b['y2']=parseInt(_0x693c6b['y2']),_0x693c6b['id']=_0x2b892a[_0x94c435(0x14f)]+0x1,_0x2b892a[_0x2b892a[_0x94c435(0x14f)]]=_0x693c6b);}for(let _0x1ef021=0x0;_0x1ef021<_0x2b892a[_0x94c435(0x14f)];_0x1ef021++){const _0x5bbf53=_0x2b892a[_0x1ef021]['x2'],_0x7093cd=_0x2b892a[_0x1ef021]['y2'];_0x2b892a[_0x1ef021]['x1']=-INFINITY,_0x2b892a[_0x1ef021]['y1']=-INFINITY,_0x2b892a[_0x1ef021]['x2']=-INFINITY+_0x5bbf53,_0x2b892a[_0x1ef021]['y2']=-INFINITY+_0x7093cd;}return{'success':!![],'coords':_0x2b892a};}function clearCanvas(){const _0x4128cd=_0x10f0dd;canvasCTX['clearRect'](0x0,0x0,canvas[_0x4128cd(0x17c)],canvas[_0x4128cd(0x163)]);}function _drawText(_0x230722,_0x4e2682,_0x390ea3,_0x2ecce8){const _0x5635c7=_0x10f0dd;canvasCTX[_0x5635c7(0x17f)]='rgb(0,0,0)',canvasCTX[_0x5635c7(0x15d)]=_0x2ecce8||_0x5635c7(0x169),canvasCTX[_0x5635c7(0x14d)](_0x390ea3,_0x230722,_0x4e2682);}function _drawRectangle(_0x32aacd,_0x2a6aae,_0x20066b,_0x472804,_0x5c90bd,_0x57d7b7){const _0x425001=_0x10f0dd;canvasCTX[_0x425001(0x17f)]=_0x5c90bd||_0x425001(0x197),canvasCTX['strokeStyle']=_0x57d7b7||_0x425001(0x143),canvasCTX[_0x425001(0x153)]=0x1,canvasCTX[_0x425001(0x178)](_0x32aacd,_0x2a6aae,_0x20066b,_0x472804),canvasCTX[_0x425001(0x157)](_0x32aacd,_0x2a6aae,_0x20066b,_0x472804);}function getRandomColor(){const _0x165fe5=_0x10f0dd;return color=_0x165fe5(0x15e)+Math[_0x165fe5(0x17a)]()*0x168+_0x165fe5(0x154),color;}function drawRectangle(_0x5e1c5a){const _0x6a7419=_0x10f0dd,_0x2af75c=_0x5e1c5a['x1'],_0x8bf1ad=_0x5e1c5a['y1'],_0x58dc65=_0x5e1c5a['x2']-_0x5e1c5a['x1'],_0x4970f9=_0x5e1c5a['y2']-_0x5e1c5a['y1'];_drawRectangle(_0x2af75c,_0x8bf1ad,_0x58dc65,_0x4970f9,getRandomColor(),_0x6a7419(0x18b));const _0x5510a3=_0x2af75c+_0x58dc65/0x2-0x8,_0x345515=_0x8bf1ad+0xa,_0x2fff30=_0x2af75c+0x2,_0x47522e=_0x8bf1ad+_0x4970f9/0x2+0x4,_0x2695ba=_0x2af75c+_0x58dc65/0x2-0x8,_0x141845=_0x8bf1ad+_0x4970f9/0x2+0x4;if(magnitude(_0x5510a3,_0x345515,_0x2695ba,_0x141845)>0x10&&magnitude(_0x2fff30,_0x47522e,_0x2695ba,_0x141845)>0x10)_drawText(_0x5510a3,_0x345515,Math[_0x6a7419(0x160)](_0x58dc65/0x2)[_0x6a7419(0x174)](),_0x6a7419(0x17b)),_drawText(_0x2fff30,_0x47522e,Math[_0x6a7419(0x160)](_0x4970f9/0x2)['toString'](),_0x6a7419(0x17b)),_drawText(_0x2695ba+0x3-_0x5e1c5a['id']['toString']()[_0x6a7419(0x14f)]*0x2,_0x141845-0x1,_0x5e1c5a['id'][_0x6a7419(0x174)]());else _drawText(_0x2695ba+0x4-_0x5e1c5a['id'][_0x6a7419(0x174)]()[_0x6a7419(0x14f)]*0x2,_0x141845-0x1,_0x5e1c5a['id'][_0x6a7419(0x174)](),_0x6a7419(0x16b));}
+/* ------------------------------------------------------------------------------------
+
+Author  : Romain Besson
+
+Date    : 10/24/2021
+
+Publish : 10/27/2021
+
+------------------------------------------------------------------------------------ */
+
+
+// _G Variables //
+let options = {
+    canRotate: false,
+    width: 0,
+    randomNumber: 1, // random Number option for random generator
+}
+let outputFields = {}
+
+let inProgress = false
+
+let g_Holes = []
+let g_Rectangles = []
+
+const INFINITY = 10**10
+// ---------------- //
+
+
+// _G Elements //
+let main = document.querySelector("main");
+let state = document.getElementById("status");
+
+let canvas = document.getElementById("output-canvas");
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+let canvasCTX = canvas.getContext('2d');
+let gridWidth = document.getElementById("width-value");
+let gridHeight = document.getElementById("height-value");
+
+let outputBox = document.getElementById("output-box");
+let outputRectanglesBox = document.getElementById("output-boxes");
+let outputRectangles = document.getElementById("outputRectangles");
+let coordinateBox = document.getElementById('box-coordinates');
+// --------------- //
+
+
+// Classes //
+class Rectangle {
+    constructor(x1, y1, x2, y2, id, origin) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.id = id;
+        this.origin = origin;
+    }
+}
+
+class Hole {
+    constructor(x1, y1, x2, y2, id, origin) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.id = id;
+        this.origin = origin;
+    }
+}
+// ------- //
+
+
+// Output Info //
+let info = Array.from(document.getElementsByClassName('output-info'))
+
+info.forEach(element => {
+    outputFields[element.attributes.name.value] = element
+})
+// ----------- //
+
+
+// Toggle Input //
+let toggles = Array.from(document.getElementsByClassName('switch'))
+
+toggles.forEach(element => {
+    element.children[0].addEventListener("click", () => {
+        const option = element.attributes.option.value
+        options[option] = !options[option]
+    })
+})
+// ------------ //
+
+
+// Text-Box Input //
+let textBoxes = Array.from(document.getElementsByClassName('input-box'))
+
+textBoxes.forEach(element => {
+    element.addEventListener("input", () => {
+        const option = element.attributes.option.value
+        if (element.value) {
+            element.value = clamp(parseInt(element.value), parseInt(element.attributes.min.value), parseInt(element.attributes.max.value))
+            options[option] = parseInt(capNumber(element.value, 0))
+        } else options[option] = 0
+    })
+})
+// -------------- //
+
+
+function randomizeCoords() {
+    let coords = ""
+    for (let i = 0; i < options.randomNumber; i++) {
+        coords = `${coords + Random(99)}, ${Random(99)}`
+        if (i !== options.randomNumber - 1) coords = `${coords}\n`
+    }
+    coordinateBox.value = coords
+}
+
+// Main Function(s) //
+function fitIn(shape1, shape2) {
+    // Check if shape1 fits in shape2
+    // ONLY by comparing their Widths and Heights AND
+    // Not their actual 2D positions
+
+    const shape1W = (shape1.x2 - shape1.x1)
+    const shape1H = (shape1.y2 - shape1.y1)
+
+    const shape2W = (shape2.x2 - shape2.x1)
+    const shape2H = (shape2.y2 - shape2.y1)
+
+    if (
+        shape1W < shape2W &&  // shape1's width is smaller than shape2's width AND
+        shape1H < shape2H     // shape1's height is smaller than shape2's height
+    ) {
+        return true // shape1 is smaller than shape2 (fits in by size)
+    }
+    return false // shape1 is bigger or equal to shape2
+}
+
+function _fitIn(shape1, shape2) {
+    // Check if shape1 fits in shape2
+    // By comparing all of the corners of shape1
+
+    if (
+        shape1.x1 >= shape2.x1 && // Top Left Corner of shape1 is inside shape2
+        shape1.y1 >= shape2.y1 && //
+
+        shape1.x2 <= shape2.x2 && // Bottom Right of shape1 is inside shape2
+        shape1.y2 <= shape2.y2 // Therefore, a boundary is formed for shape1 only using 2 corners of shape2
+    ) {
+        return true // shape1 is inside shape2
+    }
+    return false // shape1 is not inside shape2
+}
+
+function holeCovered(hole, exception, holes) {
+
+    // Iterates through all the holes (Array Pointer) and checks if it is covered by a hole AND
+    // We also pass an argument 'exception' if we are for example: Breaking a Hole into new Holes
+
+    for (let hid = 0; hid < holes.length; hid++) { // Check through all holes if hole1 is inside/covered (by) it
+        let hole2 = holes[hid]
+
+        if (hole2 !== exception && _fitIn(hole, hole2)) return true // hole1 acts as rectangle in this case
+    }
+
+    return false
+}
+
+function rotateRectangle(rectangle) { // Returns the inverse of specified rectangle in W&H
+
+    let newRectangle = new Rectangle( // We make a copy of rectangle to make sure we don't
+        rectangle.x1,                 // change the original rectangle (Pointer) passed as an argument
+        rectangle.y1,
+        rectangle.x2,
+        rectangle.y2,
+        rectangle.id,
+        rectangle.origin
+    )
+
+    const x2 = newRectangle.x2
+    const y2 = newRectangle.y2
+
+    newRectangle.x2 = y2
+    newRectangle.y2 = x2
+
+    return newRectangle
+}
+
+function removeHole(hole, holes) { // Removes a hole from specified Array (Pointer)
+    let newHoles = []
+    for (let hid = 0; hid < holes.length; hid++) {
+        if (holes[hid] !== hole) {
+            newHoles.push(holes[hid])
+        }
+    }
+    holes = newHoles
+}
+
+function addNewHole(newHole, holes) {
+    newHole.id = holes.length + 1
+    holes[holes.length] = newHole
+}
+
+function calculateHeight(rectangle, hole) {
+    return hole.y1 + (rectangle.y2 - rectangle.y1)
+}
+
+function createNewHoles(rectangle, hole, holes) {
+    // Create new holes from a Placement / Overlapping
+    // ⬛ => Hole
+    // ⬜ => Rectangle
+    // So we enumerate all the 15 cases where the Rectangle can clip inside the Hole
+
+
+    let caseMet = false
+
+    // ⬜⬜⬜
+    // ⬜⬜⬜
+    // ⬜⬜⬜
+    // [CASE 1]: Perfect fit!
+    if (
+        !caseMet &&
+        rectangle.x1 === hole.x1 && // Rectangle's Left Vertical Edge is on the hole's Left Vertical Edge
+        rectangle.y1 === hole.y1 && // Rectangle's Top Horizontal Edge is on the hole's Top Horizontal Edge
+        rectangle.x2 === hole.x2 && // Rectangle's Right Vertical Edge is on the hole's Right Vertical Edge
+        rectangle.y2 === hole.y2    // Rectangle's Bottom Horizontal Edge is on the hole's Bottom Horizontal Edge
+    ) {
+        caseMet = true // Only case where we add 0 Holes
+    }
+    //
+
+    // ⬜⬜⬜
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // [CASE 2]: Top Bar Horizontal
+    if (
+        !caseMet &&
+        rectangle.x1 <= hole.x1 && // Rectangle's Left Vertical Edge is left to the hole AND
+
+        rectangle.y1 <= hole.y1 && // Rectangle's Top Horizontal Edge is above the hole AND
+
+        rectangle.x2 >= hole.x2 && // Rectangle's Right Vertical Edge is right to the hole AND
+
+        rectangle.y2 > hole.y1 && // Rectangle's Bottom Horizontal Edge passes through the hole
+        rectangle.y2 < hole.y2    //
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, rectangle.y2, hole.x2, hole.y2, 0, 2) // We set Id of hole to 0 since we change it in the addNewHole func.
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }             // 2 is the origin case for this hole therefore: [CASE 2]
+    }
+    //
+
+    // ⬛⬛⬜
+    // ⬛⬛⬜
+    // ⬛⬛⬜
+    // [CASE 3]: Right Bar Vertical
+    if (
+        !caseMet &&
+        rectangle.x1 > hole.x1 && // Rectangle's Left Vertical Edge passes through the hole AND
+        rectangle.x1 < hole.x2 && // 
+
+        rectangle.y1 <= hole.y1 && // Rectangle's Top Horizontal Edge is above the hole AND
+
+        rectangle.x2 >= hole.x2 && // Rectangle's Right Vertical Edge is right to the hole AND
+
+        rectangle.y2 >= hole.y2 // Rectangle's Bottom Horizontal Edge is below the hole
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, rectangle.x1, hole.y2, 0, 3)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+    }
+    //
+
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // ⬜⬜⬜
+    // [CASE 4]: Bottom Bar Horizontal
+    if (
+        !caseMet &&
+        rectangle.x1 <= hole.x1 && // Rectangle's Left Vertical Edge is left to the hole AND
+
+        rectangle.y1 > hole.y1 && // Rectangle's Top Horizontal Edge passes through the hole AND
+        rectangle.y1 < hole.y2 && //
+
+        rectangle.x2 >= hole.x2 && // Rectangle's Right Vertical Edge is right to the hole AND
+
+        rectangle.y2 >= hole.y2 // Rectangle's Bottom Horizontal Edge is below the hole
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, hole.x2, rectangle.y1, 0, 4)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+    }
+    //
+
+    // ⬜⬛⬛
+    // ⬜⬛⬛
+    // ⬜⬛⬛
+    // [CASE 5]: Left Bar Vertical
+    if (
+        !caseMet &&
+        rectangle.x1 <= hole.x1 && // Rectangle's Left Vertical Edge is left to the hole AND
+
+        rectangle.y1 <= hole.y1 && // Rectangle's Top Horizontal Edge is above the hole AND
+
+        rectangle.x2 > hole.x1 && // Rectangle's Right Vertical Edge passes through the hole AND
+        rectangle.x2 < hole.x2 && //
+
+        rectangle.y2 >= hole.y2 // Rectangle's Bottom Horizontal Edge is below the hole
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(rectangle.x2, hole.y1, hole.x2, hole.y2, 0, 5)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+    }
+    //
+
+    // ⬜⬛⬛
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // [CASE 6]: Top Left Corner
+    if (
+        !caseMet &&
+        rectangle.x1 <= hole.x1 && // Rectangle's Left Vertical Edge is left to the hole AND
+
+        rectangle.y1 <= hole.y1 && // Rectangle's Top Horizontal Edge is above the hole AND
+
+        rectangle.x2 > hole.x1 && // Rectangle's Right Vertical Edge passes through the hole AND
+        rectangle.x2 < hole.x2 && // 
+
+        rectangle.y2 > hole.y1 && // Rectangle's Bottom Horizontal Edge passes through the hole
+        rectangle.y2 < hole.y2    //
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, rectangle.y2, hole.x2, hole.y2, 0, 6)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(rectangle.x2, hole.y1, hole.x2, hole.y2, 0, 6)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+    }
+    //
+
+    // ⬛⬛⬜
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // [CASE 7]: Top Right Corner
+    if (
+        !caseMet &&
+        rectangle.x1 > hole.x1 && // Rectangle's Left Vertical Edge Crosses in the hole AND
+        rectangle.x1 < hole.x2 && // 
+
+        rectangle.y1 <= hole.y1 && // Rectangle's Top Horizontal Edge is above the hole AND
+
+        rectangle.x2 > hole.x1 && // Rectangle's Right Vertical Edge is right to the hole AND
+        rectangle.x2 >= hole.x2 && // 
+
+        rectangle.y2 > hole.y1 && // Rectangle's Bottom Horizontal Edge passes through the Hole
+        rectangle.y2 < hole.y2    //
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, rectangle.x1, hole.y2, 0, 7)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(hole.x1, rectangle.y2, hole.x2, hole.y2, 0, 7)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+    }
+    //
+
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // ⬛⬛⬜
+    // [CASE 8]: Bottom Right Corner
+    if (
+        !caseMet &&
+
+        rectangle.x1 < hole.x2 && // Rectangle's Left Vertical Edge passes through the hole AND
+        rectangle.x1 > hole.x1 && //
+
+        rectangle.y1 > hole.y1 && // Rectangle's Top Horizontal Edge passes through the hole AND
+        rectangle.y1 < hole.y2 && //
+
+        rectangle.x2 >= hole.x2 && // Rectangle's Right Vertical Edge is right to the hole AND
+
+        rectangle.y2 >= hole.y2 // Rectangle's Bottom Horizontal Edge is below the hole
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, hole.x2, rectangle.y1, 0, 8)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(hole.x1, hole.y1, rectangle.x1, hole.y2, 0, 8)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+    }
+
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // ⬜⬛⬛
+    // [CASE 9]: Bottom Left Corner
+    if (
+        !caseMet &&
+
+        rectangle.x1 <= hole.x1 && // Rectangle's Left Vertical Edge is left to the hole AND
+
+        rectangle.y1 > hole.y1 && // Rectangle's Top Horizontal Edge passes through the hole AND
+        rectangle.y1 < hole.y2 && //
+
+        rectangle.x2 > hole.x1 && // Rectangle's Right Vertical Edge passes through the hole AND 
+        rectangle.x2 < hole.x2 && // 
+
+        rectangle.y2 >= hole.y2 // Rectangle's Bottom Horizontal Edge passes through the hole
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, hole.x2, rectangle.y1, 0, 9)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(rectangle.x2, hole.y1, hole.x2, hole.y2, 0, 9)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+    }
+
+    // ⬛⬜⬛
+    // ⬛⬜⬛
+    // ⬛⬜⬛
+    // [CASE 10]: Middle Vertical Bar
+    if (
+        !caseMet &&
+
+        rectangle.x1 > hole.x1 && // Rectangle's Left Vertical Edge passes through the hole AND
+        rectangle.x1 < hole.x2 && //
+
+        rectangle.y1 <= hole.y1 && // Rectangle's Top Horizontal Edge is above the hole AND
+
+        rectangle.x2 > hole.x1 && // Rectangle's Right Vertical Edge passes through the hole AND
+        rectangle.x2 < hole.x2 && //
+
+        rectangle.y2 >= hole.y2 // Rectangle's Bottom Horizontal Edge is below the hole
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, rectangle.x1, hole.y2, 0, 10)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(rectangle.x2, hole.y1, hole.x2, hole.y2, 0, 10)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+    }
+
+    // ⬛⬛⬛
+    // ⬜⬜⬜
+    // ⬛⬛⬛
+    // [CASE 11]: Middle Horizontal Bar
+    if (
+        !caseMet &&
+
+        rectangle.x1 <= hole.x1 && // Rectangle's Left Vertical Edge is left to the hole AND
+
+        rectangle.y1 > hole.y1 && // Rectangle's Top Horizontal Edge passes through the hole AND
+        rectangle.y1 < hole.y2 && //
+
+        rectangle.x2 >= hole.x2 && // Rectangle's Right Vertical Edge if right to the hole AND
+
+        rectangle.y2 > hole.y1 && // Rectangle's Bottom Horizontal Edge is below the hole
+        rectangle.y2 < hole.y2    //
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, hole.x2, rectangle.y1, 0, 11)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(hole.x1, rectangle.y2, hole.x2, hole.y2, 0, 11)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+    }
+
+    // ⬛⬜⬛
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // [CASE 12]: Top Rectangle Pop-Out
+    if (
+        !caseMet &&
+
+        rectangle.x1 > hole.x1 && // Rectangle's Left Vertical Edge passes through the hole AND
+        rectangle.x1 < hole.x2 && //
+
+        rectangle.y1 <= hole.y1 && // Rectangle's Top Horizontal Edge is above the hole AND
+
+        rectangle.x2 > hole.x1 && // Rectangle's Right Vertical Edge pases through the hole AND
+        rectangle.x2 < hole.x2 && //
+
+        rectangle.y2 > hole.y1 && // Rectangle's Bottom Horizontal Edge passes through the hole
+        rectangle.y2 < hole.y2    //
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, rectangle.x1, hole.y2, 0, 12)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(hole.x1, rectangle.y2, hole.x2, hole.y2, 0, 12)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+
+        let newHole3 = new Hole(rectangle.x2, hole.y1, hole.x2, hole.y2, 0, 12)
+        if (!holeCovered(newHole3, hole, holes)) { addNewHole(newHole3, holes) }
+    }
+
+    // ⬛⬛⬛
+    // ⬛⬛⬜
+    // ⬛⬛⬛
+    // [CASE 13]: Right Rectangle Pop-Out
+    if (
+        !caseMet &&
+
+        rectangle.x1 > hole.x1 && // Rectangle's Left Vertical Edge passes through the hole AND
+        rectangle.x1 < hole.x2 && //
+
+        rectangle.y1 > hole.y1 && // Rectangle's Top Horizontal Edge passes through the hole AND
+        rectangle.y1 < hole.y2 && //
+
+        rectangle.x2 >= hole.x2 && // Rectangle's Right Vertical Edge is right to the hole AND
+
+        rectangle.y2 > hole.y1 && // Rectangle's Bottom Horizontal Edge is below the hole
+        rectangle.y2 < hole.y2    //
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, hole.x2, rectangle.y1, 0, 13)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(hole.x1, hole.y1, rectangle.x1, hole.y2, 0, 13)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+
+        let newHole3 = new Hole(hole.x1, rectangle.y2, hole.x2, hole.y2, 0, 13)
+        if (!holeCovered(newHole3, hole, holes)) { addNewHole(newHole3, holes) }
+    }
+
+    // ⬛⬛⬛
+    // ⬛⬛⬛
+    // ⬛⬜⬛
+    // [CASE 14]: Bottom Rectangle Pop-Out
+    if (
+        !caseMet &&
+
+        rectangle.x1 > hole.x1 && // Rectangle's Left Vertical Edge passes through the hole AND
+        rectangle.x1 < hole.x2 && //
+
+        rectangle.y1 > hole.y1 && // Rectangle's Top Horizontal Edge passes through the hole AND
+        rectangle.y1 < hole.y2 && // 
+
+        rectangle.x2 > hole.x1 && // Rectangle's Right Vertical Edge passes through the hole AND
+        rectangle.x2 < hole.x2 && //
+
+        rectangle.y2 >= hole.y2 // Rectangle's Bottom Horizontal Edge is below the hole
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, rectangle.x1, hole.y2, 0, 14)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(hole.x1, hole.y1, hole.x2, rectangle.y1, 0, 14)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+
+        let newHole3 = new Hole(rectangle.x2, hole.y1, hole.x2, hole.y2, 0, 14)
+        if (!holeCovered(newHole3, hole, holes)) { addNewHole(newHole3, holes) }
+    }
+
+    // ⬛⬛⬛
+    // ⬜⬛⬛
+    // ⬛⬛⬛
+    // [CASE 15]: Left Rectangle Pop-Out
+    if (
+        !caseMet &&
+
+        rectangle.x1 <= hole.x1 && // Rectangle's Left Vertical Edge is left to the hole AND
+
+        rectangle.y1 > hole.y1 && // Rectangle's Top Horizontal Edge passes through the hole AND
+        rectangle.y1 < hole.y2 && //
+
+        rectangle.x2 > hole.x1 && // Rectangle's Bottom Horizontal Edge passes through the hole AND
+        rectangle.x2 < hole.x2 && //
+
+        rectangle.y2 > hole.y1 && // Rectangle's Right Vertical Edge passes through the hole
+        rectangle.y2 < hole.y2    //
+    ) {
+        caseMet = true
+
+        let newHole1 = new Hole(hole.x1, hole.y1, hole.x2, rectangle.y1, 0, 15)
+        if (!holeCovered(newHole1, hole, holes)) { addNewHole(newHole1, holes) }
+
+        let newHole2 = new Hole(rectangle.x2, hole.y1, hole.x2, hole.y2, 0, 15)
+        if (!holeCovered(newHole2, hole, holes)) { addNewHole(newHole2, holes) }
+
+        let newHole3 = new Hole(hole.x1, rectangle.y2, hole.x2, hole.y2, 0, 15)
+        if (!holeCovered(newHole3, hole, holes)) { addNewHole(newHole3, holes) }
+    }
+
+
+    // Delete previous completed Hole //
+    if (caseMet) {
+        removeHole(hole, holes) // Remove Hole since we broke it into multiple holes
+        g_Holes = sortByHeight(g_Holes) // Re-sort new holes (favor holes that are at the top because they have the least risk to increase canvas Height)
+        return true
+    }
+    return false // We return false (SHOULD never happen) signifying we failed to place Rectangle in Hole
+}
+
+function overlap(rectangle, hole) {
+    // Check corners //
+        // Check top left corner
+        if (
+            (rectangle.x1 > hole.x1) &&
+            (rectangle.x1 < hole.x2) &&
+            (rectangle.y1 > hole.y1) &&
+            (rectangle.y1 < hole.y2)
+        ) {
+            return true
+        }
+
+        // Check top right corner
+        if (
+            (rectangle.x2 > hole.x1) &&
+            (rectangle.x2 < hole.x2) &&
+            (rectangle.y1 > hole.y1) &&
+            (rectangle.y1 < hole.y2)
+        ) {
+            return true
+        }
+
+        // Check bottom left corner
+        if (
+            (rectangle.x1 > hole.x1) &&
+            (rectangle.x1 < hole.x2) &&
+            (rectangle.y2 > hole.y1) &&
+            (rectangle.y2 < hole.y2)
+        ) {
+            return true
+        }
+
+        // Check bottom right corner
+        if (
+            (rectangle.x2 > hole.x1) &&
+            (rectangle.x2 < hole.x2) &&
+            (rectangle.y2 > hole.y1) &&
+            (rectangle.y2 < hole.y2)
+        ) {
+            return true
+        }
+    // ------------- //
+
+
+    // Check Edges don't overlap //
+        // Check if the top horizontal edge of the rectangle passes through the hole
+        if (
+            (rectangle.x1 < hole.x2) &&
+            (rectangle.x2 > hole.x1) &&
+            (rectangle.y1 >= hole.y1) &&
+            (rectangle.y1 < hole.y2)
+        ) {
+            return true
+        }
+
+        // Check if the bottom horizontal edge of the rectangle passes through the hole
+        if (
+            (rectangle.x1 < hole.x2) &&
+            (rectangle.x2 > hole.x1) &&
+            (rectangle.y2 <= hole.y2) &&
+            (rectangle.y2 > hole.y1)
+        ) {
+            return true
+        }
+
+        // Check if the left vertical edge of the rectangle passes through the hole
+        if (
+            (rectangle.y1 < hole.y2) &&
+            (rectangle.y2 > hole.y1) &&
+            (rectangle.x1 < hole.x2) &&
+            (rectangle.x1 >= hole.x1)
+        ) {
+            return true
+        }
+
+        // Check if the right vertical edge of the rectangle passes through the hole
+        if (
+            (rectangle.y1 < hole.y2) &&
+            (rectangle.y2 > hole.y1) &&
+            (rectangle.x2 <= hole.x2) &&
+            (rectangle.x2 > hole.x1)
+        ) {
+            return true
+        }
+    // ------------------------- //
+
+
+    return false // No overlap detected
+}
+
+function getBestHole(rectangle, method, canRotate) {
+
+    let bestHole = null
+    let doRotation = false
+
+    if (method === 1) { // [METHOD 1]: Choose hole that makes canvas height the smallest
+
+        let lowestHeight = Infinity
+        for (let hid = 0; hid < g_Holes.length; hid++) {
+
+            // Check Normal Rotation //
+            const normalFits = fitIn(rectangle, g_Holes[hid])        // Check that the Normal Rectangle Orientation fits in the Hole
+            const normalH = calculateHeight(rectangle, g_Holes[hid]) // Get the Height increase for the Rectangle based on Hole's location
+
+            if (normalFits && normalH < lowestHeight) { // Check that Height increase is worthy of this Hole
+                lowestHeight = normalH
+                bestHole = g_Holes[hid]
+                doRotation = false
+            }
+            // --------------------- //
+
+
+            // Check Rotated Solution //
+            const rotationFits = fitIn(rotateRectangle(rectangle), g_Holes[hid])        // Check that the Rotated Rectangle fits in the Hole (IMPORTANT that rotateRectangle() doesn't rotate the actual Rectangle arg (Pointer))
+            const rotationH = calculateHeight(rotateRectangle(rectangle), g_Holes[hid]) // Get the Height increase for the Rotated Rectangle based on Hole's location
+
+            if (canRotate && rotationFits && rotationH < lowestHeight) { // Check that Rotated Height is worthy of the rectangle being rotated
+                lowestHeight = rotationH
+                bestHole = g_Holes[hid]
+                doRotation = true
+            }
+            // ---------------------- //
+
+        }
+
+    } else if (method === 2) { // [METHOD 2]: Choose Highest hole in Y position
+
+        let highestY = Infinity
+
+        for (let hid = 0; hid < g_Holes.length; hid++) {
+            if (g_Holes[hid].y1 < highestY) {
+
+                if (!fitIn(rectangle, g_Holes[hid])) {
+
+                    if (canRotate && fitIn(rotateRectangle(rectangle), g_Holes[hid])) {
+                        doRotation = true
+
+                        highestY = g_Holes[hid].y1
+                        bestHole = g_Holes[hid]
+                    }
+
+                } else {
+
+                    if (canRotate && fitIn(rotateRectangle(rectangle), g_Holes[hid]) && rotateRectangle(rectangle).y2 < rectangle.y2) {
+                        doRotation = true
+                    }
+
+                    highestY = g_Holes[hid].y1
+                    bestHole = g_Holes[hid]
+                }
+            }
+        }
+
+    } else if (method === 3) { // [METHOD 3]: Choose the Hole that matches the most with the Rectangle (least difference in W&H)
+
+        const rectA = (rectangle.x2 - rectangle.x1) * (INFINITY-rectangle.y1)
+        let lowestADiff = Infinity
+
+        for (let hid = 0; hid < g_Holes.length; hid++) {
+            const holeA = (g_Holes[hid].x2 - g_Holes[hid].x1) * (INFINITY-g_Holes[hid].y1)
+            if (Math.abs(holeA - rectA) < lowestADiff) {
+                lowestADiff = Math.abs(holeA - rectA)
+                bestHole = g_Holes[hid]
+            }
+        }
+
+    }
+
+    return { bestHole: bestHole, doRotation: doRotation }
+}
+
+function Main() {
+    if (!inProgress) {
+        clearCanvas() // Reset Canvas of Rectangles & Text
+        inProgress = true // Stop user from Stopping Current Sort or Starting a New Sort, etc ...
+
+        // Indicate USER that we have started Main //
+        state.attributes.style.value = "color:rgb(0, 255, 0)"
+        state.innerHTML = "Working"
+        // -------------------------------------------- //
+
+        // Check Width //
+        if (options.width === 0) {
+            state.attributes.style.value = "color:rgb(255, 0, 0)"
+            state.innerHTML = "Failed: Width is 0"
+            inProgress = false
+
+            return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
+        }
+        //
+
+        // Check Format + Format Box Coords //
+        let boxes = processCoords(coordinateBox.value)
+        if (!boxes.success) {
+            state.attributes.style.value = "color:rgb(255, 0, 0)"
+            state.innerHTML = "Failed: Wrong Format"
+            inProgress = false
+
+            return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
+        }
+        // -------------------------------- //
+
+
+        // Current Sort/Session Info //
+        let sessionInfo = {
+            CanRotate: options.canRotate,
+            Width: options.width,
+
+            StartTime: 0,
+            EndTime: 0,
+            RunTime: 0
+        }
+        // ---------------- //
+
+
+        // Set Global Arrays //
+        g_Rectangles = sortByArea(boxes.coords) // Iterate over the biggest rectangles first
+        g_Holes = [new Hole(0, 0, sessionInfo.Width, INFINITY, 1, 0)] // First hole the size of the Infinity with origin Zero as break Case Origin
+        // ----------------- //
+
+
+        // Check if Solve is Possible //
+        for (let rid = 0; rid < g_Rectangles.length; rid++) {
+            if (g_Rectangles[rid].x2 - g_Rectangles[rid].x1 > 1000 || g_Rectangles[rid].y2 - g_Rectangles[rid].y1 > 1000) {
+                state.attributes.style.value = "color:rgb(255, 0, 0)"
+                state.innerHTML = `Failed: Box n°${g_Rectangles[rid].id} is too big.`
+                inProgress = false
+
+                return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
+            }
+
+            if (g_Rectangles[rid].x2 - g_Rectangles[rid].x1 > sessionInfo.Width && g_Rectangles[rid].y2 - g_Rectangles[rid].y1 > sessionInfo.Width || (!sessionInfo.CanRotate && g_Rectangles[rid].x2 - g_Rectangles[rid].x1 > sessionInfo.Width)) {
+                state.attributes.style.value = "color:rgb(255, 0, 0)"
+                state.innerHTML = `Failed: Box n°${g_Rectangles[rid].id} is too big.`
+                inProgress = false
+
+                return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
+            }
+        }
+        // -------------------------- //
+
+
+        sessionInfo.StartTime = performance.now()
+        // Start Main Iteration over Rectangles //
+        for (let rid = 0; rid < g_Rectangles.length; rid++) {
+            let res = getBestHole(g_Rectangles[rid], 1, sessionInfo.CanRotate)
+
+            if (res.bestHole !== null) { // Mainly for debugging, this SHOULD never occur ...
+                let bestHole = res.bestHole
+
+                if (res.doRotation) { // If Best Hole needs rotation of rectangle --> rotate Current Rectangle
+                    g_Rectangles[rid] = rotateRectangle(g_Rectangles[rid])
+                }
+
+                // Place Current Rectangle in Best Hole //
+                const w = (g_Rectangles[rid].x2 - g_Rectangles[rid].x1)
+                const h = (g_Rectangles[rid].y2 - g_Rectangles[rid].y1)
+
+                g_Rectangles[rid].x2 = bestHole.x1 + w
+                g_Rectangles[rid].y2 = bestHole.y1 + h
+
+                g_Rectangles[rid].x1 = bestHole.x1
+                g_Rectangles[rid].y1 = bestHole.y1
+                // ----------------------------------- //
+
+
+                g_Rectangles[rid].origin = bestHole.origin // Debugging purposes to test cases that are most redundant, or faulty
+
+                let newHoles = [] // New array that will overwrite the current g_Holes
+
+                for (let hid = 0; hid < g_Holes.length; hid++) {
+                    if (overlap(g_Rectangles[rid], g_Holes[hid])) { // If the Current Rectangle overlaps with a hole, we break the hole into new holes ...
+
+                        if (!createNewHoles(g_Rectangles[rid], g_Holes[hid], newHoles)) {
+                            state.attributes.style.value = "color:rgb(255, 0, 0)"
+                            state.innerHTML = "Failed: Couldn't place rectangle n°" + g_Rectangles[rid].id
+                            inProgress = false
+
+                            return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
+                        }
+
+                    } else { // if it doesn't overlap, we add the hole to the newHoles overwrite array
+                        newHoles[newHoles.length] = g_Holes[hid]
+                    }
+                }
+                g_Holes = sortByHeight(newHoles)
+
+                if (!createNewHoles(g_Rectangles[rid], bestHole, g_Holes)) {
+                    state.attributes.style.value = "color:rgb(255, 0, 0)"
+                    state.innerHTML = "Failed: Couldn't place rectangle n°" + g_Rectangles[rid].id
+                    inProgress = false
+
+                    return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
+                }
+
+                g_Holes = sortByHeight(g_Holes)
+
+            } else { // If we can't find a Best Hole for a rectangle (should never happen), we abort since it's an abnormal case
+                state.attributes.style.value = "color:rgb(255, 0, 0)"
+                state.innerHTML = "Failed: Couldn't find hole for rectangle n°" + g_Rectangles[rid].id
+                inProgress = false
+
+                return setTimeout(() => { if (!inProgress) { Reset() } }, 2000)
+            }
+        }
+        // End Main For Loop //
+
+        // Show Run Time (Time it took to calculate position + orientation of all holes) //
+        sessionInfo.EndTime = performance.now()
+        sessionInfo.RunTime = capNumber((sessionInfo.EndTime - sessionInfo.StartTime) / 1000, 3)
+        if (sessionInfo.RunTime < 60) {
+            outputFields.runTime.innerHTML = sessionInfo.RunTime + " s"
+        } else {
+            const inMinutes = capNumber(sessionInfo.RunTime / 60, 0)
+            const inSeconds = capNumber((sessionInfo.RunTime / 60) - inMinutes, 2)
+            outputFields.runTime.innerHTML = inMinutes + " m " + inSeconds + " s"
+        }
+        // ----------------------------------------------------------------------------- //
+
+
+        g_Rectangles = sortByY(g_Rectangles) // Sort Rectangles In Order they appear on screen (User Friendly Display Method)
+
+        // Get Canvas Height + Rectangles Combined Area //
+        let endRectArea = 0
+        let shortestHeight = 0
+        g_Rectangles.forEach(rectangle => {
+            const w = (rectangle.x2 - rectangle.x1)
+            const h = (rectangle.y2 - rectangle.y1)
+
+            endRectArea = endRectArea + w * h
+
+            if (rectangle.y2 > shortestHeight) {
+                shortestHeight = rectangle.y2
+            }
+        })
+        // ------------------------------ //
+
+        
+        // (Show + Scale) Height On Canvas //
+        canvas.style.height = shortestHeight * 2 + "px"
+        canvas.height = canvas.clientHeight
+
+        gridHeight.style.marginTop = shortestHeight * 2 + 18 + "px"
+
+        gridHeight.innerHTML = shortestHeight
+        const newHeight = (2 - Math.round(gridHeight.getBoundingClientRect().width) / 2).toString()
+        gridHeight.style.marginLeft = Math.floor(newHeight) + "px"
+        // ------------------------------ //
+
+
+        // (Show + Scale) Width On Canvas //
+        canvas.style.width = sessionInfo.Width * 2 + "px"
+        canvas.width = canvas.clientWidth
+
+        gridWidth.innerHTML = sessionInfo.Width
+        const newWidth = (sessionInfo.Width * 2 - Math.round(gridWidth.getBoundingClientRect().width) / 2).toString()
+        gridWidth.style.marginLeft = Math.floor(newWidth) + "px"
+
+        outputBox.style.marginLeft = sessionInfo.Width * 2 + 310 + "px"
+        outputRectanglesBox.style.marginLeft = sessionInfo.Width * 2 + 310 + "px"
+        // ------------------------------ //
+
+
+        // Calculate Theoretical Minimum Height //
+
+        // To Calculate the Theoretical Minimum Height:
+        // 1) We have all the rectangles so we accumulate their Area (W*H)
+        // 2) And then we divide it by the input width the user has given ...
+        //    since H of rectangle is A/W
+
+        let minHeight = 0
+        g_Rectangles.forEach(rectangle => {
+            const w = rectangle.x2 - rectangle.x1
+            const h = rectangle.y2 - rectangle.y1
+            minHeight = minHeight + w * h
+        });
+        minHeight = minHeight / sessionInfo.Width
+        outputFields.theoreticalMinHeight.innerHTML = Math.round(minHeight) // Display It
+
+        // ------------------------------------ //
+
+
+        // Draw + Show Rectangles // 
+        outputRectangles.innerHTML = "<p></p><p></p>"
+        g_Rectangles.forEach(rectangle => {
+            const w = (rectangle.x2 - rectangle.x1)
+            const h = (rectangle.y2 - rectangle.y1)
+
+            outputRectangles.innerHTML = `${outputRectangles.innerHTML + rectangle.id}'${scaleString(rectangle.id, 3)}&nbsp;:&nbsp;&nbsp;${w}${scaleString(w, 3)} (width) x ${h}${scaleString(h, 3)} (height)  [ ${rectangle.x1}${scaleString(rectangle.x1, 5)},  ${rectangle.y1}${scaleString(rectangle.y1, 5)}, ${rectangle.x2}${scaleString(rectangle.x2, 5)}, ${rectangle.y2}${scaleString(rectangle.y2, 5)}]<p></p><p></p>`
+
+            let nRectangle = new Rectangle(rectangle.x1 * 2, rectangle.y1 * 2, rectangle.x2 * 2, rectangle.y2 * 2, rectangle.id, rectangle.origin)
+            drawRectangle(nRectangle)
+        })
+        // ---------------------- //
+
+
+        let endCanvasArea = shortestHeight * sessionInfo.Width // Show Result Height found
+        outputFields.endHeight.innerHTML = shortestHeight      //
+
+        outputFields.percLost.innerHTML = capNumber((endCanvasArea - endRectArea) / endCanvasArea * 100, 3) + " %" // Show Rectangle (green) repartition in % over the canvas AND
+        outputFields.percUsed.innerHTML = capNumber((endRectArea) / endCanvasArea * 100, 3) + " %"                 // Show Holes (gray) repartition in % over the canvas
+
+        g_Rectangles = [] // Reset both global arrays back to empty
+        g_Holes = []      //
+
+        inProgress = false // End of Sort
+        state.attributes.style.value = "color:rgb(0, 255, 0)"
+        state.innerHTML = "Done!"
+    }
+}
+
+function Reset() {
+    if (!inProgress) {
+        g_Rectangles = []
+        g_Holes = []
+
+        // (Reset + Scale) Canvas //
+        clearCanvas()
+
+        outputBox.style.marginLeft = 642 + "px"
+        outputRectanglesBox.style.marginLeft = 642 + "px"
+
+        canvas.style.height = 532 + "px"
+        canvas.height = canvas.clientHeight
+
+        canvas.style.width = 332 + "px"
+        canvas.width = canvas.clientWidth
+        //
+
+        // Reset Output Fields //
+        outputRectangles.innerHTML = ""
+        for (field in outputFields) {
+            outputFields[field].innerHTML = "NaN"
+        }
+        //
+
+        // (Reset + Scale) Width On Canvas //
+        gridWidth.innerHTML = 0
+        const newWidth = (332 - Math.round(gridWidth.getBoundingClientRect().width) / 2).toString()
+        gridWidth.style.marginLeft = Math.floor(newWidth) + "px"
+        //
+
+        // (Reset + Scale) Height On Canvas //
+        gridHeight.style.marginTop = 550 + "px"
+        gridHeight.innerHTML = 0
+        const newHeight = (2 - Math.round(gridHeight.getBoundingClientRect().width) / 2).toString()
+        gridHeight.style.marginLeft = Math.floor(newHeight) + "px"
+        //
+
+        // Reset Status to Idle + Wait for new Sorting //
+        state.attributes.style.value = "color:rgb(255, 255, 0)"
+        state.innerHTML = "Idle"
+        inProgress = false
+        //
+    }
+}
+//
+
+// Base Functions //
+let mergeSortComparison = (a, b) => {
+    return a[0] > b[0]
+}
+
+// Sorting //
+function sortByArea(tbl) { // Sort table by rectangle Area Size
+    mergeSortComparison = (a, b) => {
+        const aw = a[0].x2 - a[0].x1
+        const ah = a[0].y2 - a[0].y1
+
+        const bw = b[0].x2 - b[0].x1
+        const bh = b[0].y2 - b[0].y1
+
+        return aw * ah < bw * bh
+    }
+    return mergeSort(tbl)
+}
+
+function sortByWHDifference(tbl) {
+    mergeSortComparison = (a, b) => {
+        const aw = a[0].x2 - a[0].x1
+        const ah = a[0].y2 - a[0].y1
+
+        const bw = b[0].x2 - b[0].x1
+        const bh = b[0].y2 - b[0].y1
+
+        return Math.abs(aw - ah) > Math.abs(bw - bh)
+    }
+    return mergeSort(tbl)
+}
+
+function sortByHeight(tbl) {
+    mergeSortComparison = (a, b) => {
+        return Math.abs(a[0].y2) > Math.abs(b[0].y2)
+    }
+    return mergeSort(tbl)
+}
+
+function sortByY(tbl) {
+    mergeSortComparison = (a, b) => {
+        return Math.abs(a[0].y1) > Math.abs(b[0].y1)
+    }
+    return mergeSort(tbl)
+}
+
+function sortById(tbl) {
+    mergeSortComparison = (a, b) => {
+        return a[0].id > b[0].id
+    }
+    return mergeSort(tbl)
+}
+//
+
+// Merge Sort //
+function mergeArrays(a, b) {
+    const c = []
+
+    while (a.length && b.length) {
+        c.push(mergeSortComparison(a, b) ? b.shift() : a.shift())
+    }
+
+    // Add remaining values to end of c
+    while (a.length) {
+        c.push(a.shift())
+    }
+    while (b.length) {
+        c.push(b.shift())
+    }
+
+    return c
+}
+
+function mergeSort(a) {
+    if (a.length <= 1) return a // Check Length of Array
+
+    const middle = Math.floor(a.length / 2) // We do Math.floor for left to be smaller
+
+    const left = a.slice(0, middle)
+    const right = a.slice(middle, a.length)
+
+    const sorted_left = mergeSort(left)
+    const sorted_right = mergeSort(right)
+
+    return mergeArrays(sorted_left, sorted_right)
+}
+// ---------- //
+
+
+// Base Functions //
+function capNumber(n, d) { // Cap Number to d decimals
+    const f = 10 ** d
+    return (Math.round(n * f) / f).toFixed(d)
+}
+
+function magnitude(x1, y1, x2, y2) {
+    return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+}
+
+function clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max)
+}
+
+function Random(max) {
+    return clamp(Math.floor(Math.random() * max), 10, Infinity);
+}
+
+function scaleString(string, n) {
+    let space = ""
+    for (let i = 0; i < n - string.toString().length; i++) { space = space + "&nbsp;" }
+    return space
+}
+// -------------- //
+
+
+// Essentials //
+function processCoords(inputCoords) {
+    if (inputCoords === "" || inputCoords.length < 4) return { success: false, message: "c1" }
+
+    let coords = []
+    let current = new Rectangle(0, 0, 0, 0, 0, 0)
+    let switcher = 'x2'
+    let check = false
+
+    for (let i = 0; i < inputCoords.length; i++) {
+        const n = inputCoords[i]
+
+        if (n === ",") {
+            if (switcher === 'x2') { switcher = 'y2' } else { switcher = 'x2' }
+
+            if (check) return { success: false, message: "2" }
+            check = true
+
+            if (i === inputCoords.length - 1) return { success: false, message: "c3" }
+        } else if (n === "\n") {
+            if (!parseInt(current.x2) || !parseInt(current.y2)) return { success: false, message: "c3" }
+
+            if (!check) return { success: false, message: "c4" }
+            check = false
+
+            current.id = coords.length + 1
+
+            current.x2 = parseInt(current.x2); current.y2 = parseInt(current.y2)
+            coords[coords.length] = current
+            current = new Rectangle(0, 0, 0, 0, 0, 0)
+            switcher = 'x2'
+
+            if (i === inputCoords.length - 1) return { success: false, message: "c5" }
+        } else if (n !== " ") {
+            if (!parseInt(n) && n !== "0") return { success: false, message: "c6" }
+
+            if (!current[switcher]) current[switcher] = ""
+            current[switcher] = current[switcher] + n
+        }
+
+        if (i === inputCoords.length - 1 && parseInt(current.x2) && parseInt(current.y2)) {
+            current.x2 = parseInt(current.x2); current.y2 = parseInt(current.y2)
+
+            current.id = coords.length + 1
+
+            coords[coords.length] = current
+        }
+    }
+
+    for (let i = 0; i < coords.length; i++) {
+        const w = coords[i].x2
+        const h = coords[i].y2
+
+        coords[i].x1 = -INFINITY
+        coords[i].y1 = -INFINITY
+
+        coords[i].x2 = -INFINITY+w
+        coords[i].y2 = -INFINITY+h
+    }
+
+    return { success: true, coords: coords }
+}
+
+function clearCanvas() {
+    canvasCTX.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function _drawText(x, y, text, font) { // Draw Text on Canvas
+    canvasCTX.fillStyle = "rgb(0,0,0)"
+    canvasCTX.font = font || "14px Arial";
+    canvasCTX.fillText(text, x, y);
+}
+function _drawRectangle(x, y, w, h, fill, stroke) {
+    canvasCTX.fillStyle = fill || "rgb(255,255,255)";
+    canvasCTX.strokeStyle = stroke || "rgb(0, 0, 0)"
+    canvasCTX.lineWidth = 1
+    canvasCTX.fillRect(x, y, w, h);
+    canvasCTX.strokeRect(x, y, w, h)
+}
+
+function getRandomColor() {
+    color = "hsl(" + Math.random() * 360 + ", 100%, 70%)";
+    return color;
+}
+
+function drawRectangle(shape) {
+    const x = shape.x1
+    const y = shape.y1
+    const w = shape.x2 - shape.x1
+    const h = shape.y2 - shape.y1
+
+    _drawRectangle(x, y, w, h, getRandomColor(), "rgb(50, 50, 50)") // Draw Rectangle
+
+    // Calculate Width + Height for TXT //
+    const wx = x + w / 2 - 8
+    const wy = y + 10
+
+    const hx = x + 2
+    const hy = y + h / 2 + 4
+
+    const idx = x + w / 2 - 8
+    const idy = y + h / 2 + 4
+    // -------------------------------- //
+
+    // Draw Text //
+    if (magnitude(wx, wy, idx, idy) > 16 && magnitude(hx, hy, idx, idy) > 16) { // Overlap Checker
+        _drawText(wx, wy, Math.round(w / 2).toString(), "10px Arial") // Width
+        _drawText(hx, hy, Math.round(h / 2).toString(), "10px Arial") // Height
+        _drawText(idx + 3 - shape.id.toString().length*2, idy - 1, shape.id.toString()) // ID
+    } else _drawText(idx + 4 - shape.id.toString().length*2, idy - 1, shape.id.toString(), "12px Arial") // ID
+    // --------- //
+}
+// ---------- //
