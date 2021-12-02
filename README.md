@@ -1,7 +1,7 @@
 # Strip Packing
-[![](https://img.shields.io/badge/Author-Romain%20Besson-brightgreen)](https://github.com/R-Besson) ![](https://img.shields.io/badge/Published-24/10/2021-brightgreen) ![](https://img.shields.io/badge/Started-27/10/2021-brightgreen)
+[![](https://img.shields.io/badge/Author-Romain%20Besson-brightgreen)](https://github.com/R-Besson) ![](https://img.shields.io/badge/Published-24/10/2021-brightgreen) ![](https://img.shields.io/badge/Started-27/10/2021-brightgreen) \
 \
-![](https://img.shields.io/badge/HTML-ff5e00?style=flat&logo=html5&logoColor=white) ![](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white) ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![](https://img.shields.io/badge/HTML-ff5e00?style=flat&logo=html5&logoColor=white) ![](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white) ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) \
 \
 This repository contains implementations for the strip packing problem that can be found here: https://en.wikipedia.org/wiki/Strip_packing_problem <br>
 
