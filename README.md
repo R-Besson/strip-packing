@@ -10,3 +10,7 @@ As we place the rectangles inside the holes, we break the antecedent hole into n
 
 The web interface can be found here: https://r-besson.github.io/strip-packing/ <br>
 We can choose to rotate rectangles efficiently, or to not do so. We can specify the width of the canvas (strip), generate random boxes, or specify our own boxes.
+
+## License
+
+[![](https://img.shields.io/badge/License-CC%201.0-lightgrey)](https://creativecommons.org/publicdomain/zero/1.0)
