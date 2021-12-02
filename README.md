@@ -9,4 +9,4 @@ The first hole starts as the entirety of the strip (with a Height that is neglig
 As we place the rectangles inside the holes, we break the antecedent hole into new holes using 15 different positional cases, check for overlap, etc ... <br>
 
 The web interface can be found here: https://r-besson.github.io/strip-packing/ <br>
-We can choose to rotate rectangles efficiently, or to not do so. We can specify the width of the canvas (strip) and input our boxes in the boxes box.
+We can choose to rotate rectangles efficiently, or to not do so. We can specify the width of the canvas (strip), generate random boxes, or specify our own boxes.
